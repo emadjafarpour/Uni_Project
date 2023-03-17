@@ -1,0 +1,12 @@
+﻿@model List<GirlyMerely.Core.Models.ArticleCategory>
+<div class="sidebar-category sidebar-default">
+    <div class="category-content">
+        <h2 class="cat-title">دسته بندی ها</h2>
+        <ul class="pl-0 mb-0">
+            @foreach (var item in Model)
+            {
+                <li><a href="/Blog?category=@item.Id">- @item.Title</a></li>
+            }
+        </ul>
+    </div>
+</div>

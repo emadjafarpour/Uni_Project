@@ -1,0 +1,47 @@
+﻿@using Stimulsoft.Report.Mvc
+@using Stimulsoft.Report.Web
+
+@{
+    ViewBag.Title = "Print";
+    Layout = null;
+}
+
+<h2>Print</h2>
+<hr />
+@Html.Stimulsoft().StiMvcViewer(new StiMvcViewerOptions()
+{
+
+    Actions =
+    {
+        GetReport = "report",
+        ViewerEvent = "ViewerEvent"
+    },
+    Appearance =
+    {
+        FullScreenMode = true,
+        ScrollbarsMode = true
+    },
+    Toolbar =
+    {
+        DisplayMode = StiToolbarDisplayMode.Separated
+    }
+});
+
+
+@*@Html.Stimulsoft().StiMvcViewerFx(new StiMvcViewerFxOptions()
+    {
+        ActionGetReportSnapshot = "GetReportSnapshot",
+        ActionGetLocalization = "GetLocalization",
+        ActionExportReport = "ExportReport",
+        /* UserData = ViewBag.UserData*/  /* doesn't exist, yet! */
+    })*@
+@*@Html.Stimulsoft().StiMvcViewer(new StiMvcViewerOptions()
+    {
+        Actions =
+        {
+            GetReport = "GetReport",
+            PrintReport = "PrintReport",
+            ExportReport = "ExportReport",
+            ViewerEvent = "ViewerEvent"
+        }
+    })*@

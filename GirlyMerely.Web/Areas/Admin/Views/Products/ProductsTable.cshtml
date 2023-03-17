@@ -1,0 +1,54 @@
+﻿@using Kendo.Mvc.UI
+@using GirlyMerely.Infrastructure.Helpers
+@model List<GirlyMerely.Core.Models.Product>
+
+@(Html.Kendo().Grid(Model)
+                .Name("Grid")
+                .HtmlAttributes(new { style = "height:450px" })
+                .Columns(columns =>
+                {
+                    columns.Bound(model => model.Title);
+                    columns.Bound(item => @item.Id).IncludeInMenu(false).Sortable(false).Title("دستورات").Filterable(false).Groupable(false).Template(
+                                            @<text>
+                                                <a class='btn btn-sm btn-clean btn-icon mr-2' href="/Admin/Products/Edit/@item.Id"><i class='far fa-edit text-primary'></i></a>
+                                                <a class='btn btn-sm btn-clean btn-icon' onclick="@(CheckPermission.Check("productsdelete") ? $"btnDelete({item.Id})" : "accessDenied()")"><i class='far fa-trash-alt text-danger'></i></a>
+                                                @Html.ActionLink("گالری", "Index", "ProductGalleries", new { productId = @item.Id }, new { @class = "btn btn-primary btn-sm ml-2" })
+                                                @Html.ActionLink("کامنت ها", "Index", "ProductComments", new { productId = @item.Id }, new { @class = "btn btn-primary btn-sm ml-2" })
+
+                                            </text>
+).Width(300);
+})
+.Sortable()
+.Scrollable()
+.Pageable(pager => pager.PageSizes(new int[] { 10, 30, 50, 70, 100 }).Messages(m => m.ItemsPerPage("آیتم در هر صفحه").Display("")))
+   .DataSource(dataSource => dataSource
+   .Server()
+
+   .Model(model => model.Id(item => item.Id))
+)
+.Filterable(filterable => filterable
+   .Messages(m => m
+       .Filter("فیلتر")
+       .Clear("حذف")
+       .Info("آن هایی را نشان بده که:")
+       .And("و")
+       .Or("یا")
+       )
+   .Operators(operators => operators
+       .ForString(str => str.Clear()
+           .IsEqualTo("برابر است با")
+           .IsNotEqualTo("برابر نیست با")
+           .Contains("شامل میشود")
+           .DoesNotContain("شامل نمیشود")
+           .StartsWith("شروع میشود با")
+           .IsNullOrEmpty("خالی است")
+           .IsNotNullOrEmpty("خالی نیست")
+       )))
+)
+
+
+
+
+<!-- Modal -->
+
+

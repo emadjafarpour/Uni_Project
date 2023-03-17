@@ -1,0 +1,23 @@
+﻿@model GirlyMerely.Web.ViewModels.CartModel
+@{
+    ViewBag.Title = "سبد خرید";
+}
+<!-- Breadcrumb Area start -->
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content">
+                    <h1 class="breadcrumb-hrading">صفحه سبد خرید</h1>
+                    <ul class="breadcrumb-links">
+                        <li><a href="/">خانه</a></li>
+                        <li>سبد خرید</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="CartTable">
+    @Html.Action("CartTable", "Shop", new { area = "" })
+</div>

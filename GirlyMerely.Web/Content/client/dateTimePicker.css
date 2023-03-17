@@ -1,0 +1,28 @@
+@media screen and (min-width: 360px) {
+    .datepicker-plot-area {
+        width: 350px;
+    }
+    #datepicker{
+        width: 350px;
+    }
+}
+
+
+
+
+
+
+
+
+.datepicker
+.form-control {
+	background: #fff;
+}
+.timepicker
+.form-control {
+	background: #fff;
+}
+.datetimepicker 
+.form-control {
+	background: #fff;
+}

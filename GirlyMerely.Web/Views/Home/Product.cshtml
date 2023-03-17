@@ -1,0 +1,911 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+
+
+<head>
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <title>سه شین</title>
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link type="image/x-icon" href="/Content/client/images/fav-icon.png" rel="icon">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/Content/client/css/glass-case.css">
+    <link rel="stylesheet" type="text/css" href="/Content/client/css/xpoge.css">
+    <link rel="stylesheet" type="text/css" href="/Content/client/css/responsive.css">
+</head>
+<body class="text-right">
+    <!-- Start preloader -->
+    <div id="preloader"></div>
+    <!-- End preloader -->
+    <!-- Search Screen start -->
+    <div class="sidebar-search-wrap">
+        <div class="sidebar-table-container">
+            <div class="sidebar-align-container">
+                <div class="search-closer right-side"></div>
+                <div class="search-container">
+                    <form method="get" id="search-form">
+                        <input type="text" id="s" class="search-input" name="s" placeholder="جستجو کنید">
+                    </form>
+                    <span>محصول مورد نظر را جستجو کنید</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Screen end -->
+
+    <div class="main">
+        <!-- Header start -->
+        <header id="header">
+            <div class="container position-r">
+                <div class="row m-0">
+                    <div class="col-lg-3 col-md-4 col-4 p-0">
+                        <div class="navbar-header">
+                            <a class="navbar-brand page-scroll" href="/">
+                                <img alt="" src="/Content/client/images/logo.png">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-8 p-0 position-initial">
+                        <div class="left-side">
+                            <button data-target=".navbar-collapse" data-toggle="collapse"
+                                    class="navbar-toggle d-block d-lg-none d-xl-none" type="button">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <div class="overlay"></div>
+                            <div class="header-right-link">
+                                <ul>
+                                    <li class="search-box">
+                                        <a href="#"><span></span></a>
+                                    </li>
+                                    <li class="account-icon">
+                                        <a href="#"><span></span></a>
+                                        <div class="header-link-dropdown account-link-dropdown">
+                                            <ul class="link-dropdown-list">
+                                                <li>
+                                                    <span class="dropdown-title">خوش آمدید</span>
+                                                    <ul>
+                                                        <li><a href="/Home/Login">ورود</a></li>
+                                                        <li><a href="/Home/Register">ثبت نام</a></li>
+                                                    </ul>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="cart-icon">
+                                        <a href="#" class="buy"> <span> <small class="cart-notification">0</small> </span> </a>
+                                        <div class="cart-dropdown header-link-dropdown">
+                                            <ul class="cart-list link-dropdown-list">
+                                            </ul>
+                                            <p class="cart-sub-totle">
+                                                <span class="pull-right">مبلغ کل</span>
+                                                <span class="pull-left">
+                                                    <strong class="price-box cart-total-price">0 تومان</strong>
+                                                </span>
+                                            </p>
+                                            <div class="clearfix"></div>
+                                            <div class="mt-20">
+                                                <a href="/Home/Wishlist" class="btn-color btn">سبدخرید</a>
+                                                <a href="/Home/Checkout" class="btn-color btn left-side">پرداخت </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="menu" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="level">
+                                        <a href="/" class="nav-link">صفحه اصلی</a>
+                                    </li>
+                                    <li class="level dropdown">
+                                        <span class="opener plus"></span>
+                                        <a href="/Home/Shop" class="nav-link">عطر زنانه</a>
+                                        <div class="megamenu mobile-sub-menu">
+                                            <div class="megamenu-inner-top">
+                                                <ul class="sub-menu-level1">
+                                                    <li class="level2 ">
+                                                        <a href="/Home/Shop"><span>برند های شناخته شده</span></a>
+                                                        <ul class="sub-menu-level2">
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>Gucci
+                                                                    EDP
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>لانکوم مدل
+                                                                    پوئم
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>تام
+                                                                    فورد
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>سان شاین
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop"><span>■</span>جورجیو</a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>coco
+                                                                    شنل
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+                                                    <li class="level2 d-none d-lg-block">
+                                                        <a href="#" class="m-0">
+                                                            <img src="/Content/client/images/drop_banner3.jpg" alt="">
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="level dropdown">
+                                        <span class="opener plus"></span>
+                                        <a href="/Home/Shop" class="nav-link">عطر مردانه</a>
+                                        <div class="megamenu mobile-sub-menu">
+                                            <div class="megamenu-inner-top">
+                                                <ul class="sub-menu-level1">
+                                                    <li class="level2 ">
+                                                        <a href="/Home/Shop"><span>برند های شناخته شده</span></a>
+                                                        <ul class="sub-menu-level2">
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop"><span>■</span>آکوا دی جیو</a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href=/Home/Shop">
+                                                                    <span>■</span>بلو د
+                                                                    شنل
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>پاکا
+                                                                    رابن
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>میشل
+                                                                    کورس
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>جورجیو
+                                                                    آرمانی
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop"><span>■</span>دیور</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+                                                    <li class="level2 d-none d-lg-block">
+                                                        <a href="#" class="m-0">
+                                                            <img src="/Content/client/images/drop_banner4.jpg" alt="">
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="level">
+                                        <a href="/Home/Blog" class="nav-link">بلاگ</a>
+                                    </li>
+                                    <li class="level">
+                                        <a href="/Home/Contact" class="nav-link">تماس با ما</a>
+                                    </li>
+                                    <li class="level">
+                                        <a href="/Home/Guide" class="nav-link">راهنمایی آنلاین</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header end -->
+        <!-- Product detail contant start -->
+        <div class="contant">
+            <div id="banner-part" class="banner inner-banner">
+                <div class="container">
+                    <div class="bread-crumb-main">
+                        <h1 class="banner-title">عطر</h1>
+                        <div class="breadcrumb">
+                            <ul class="inline">
+                                <li><a href="/">خانه</a></li>
+                                <li><a href="/Home/Shop">عطر و ادکلن</a></li>
+                                <li>مشخصات عطر</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ptb-100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6 col-12">
+                            <div class="align-center mb-md-30">
+                                <ul id="glasscase" class="gc-start">
+                                    <li><img src="/Content/client/images/1.jpg" alt="" /></li>
+                                    <li><img src="/Content/client/images/2.jpg" alt="" /></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-12">
+                            <div class="product-detail-main">
+                                <div class="product-item-details">
+                                    <h1 class="product-item-name">عطر تلخ و خنک </h1>
+                                    <div class="price-box">
+                                        <span class="price">180،000 تومان</span>
+                                        <del class="price old-price">220،000 تومان</del>
+                                    </div>
+                                    <div class="rating-main">
+                                        <div class="rating-summary-block">
+                                            <div title="53%" class="rating-result"><span style="width:53%"></span></div>
+                                        </div>
+                                        <span>5 دیدگاه</span>
+                                    </div>
+                                    <div class="product-des">
+                                        <p>
+                                            این عطر یکی از بهترین عطر های موجود در بازار است که توانسته اند بسیاری از مصرف
+                                            کننده ها را از خود راضی نگه دارد .
+                                            خواندن نطرات کاربران مصرف کننده این عطر می تواند بسیار به شما در انتخابتان کمک
+                                            کند
+                                        </p>
+                                    </div>
+                                    <ul class="product-list">
+                                        <li><i class="fa fa-check"></i> ضمانت هفت روز بازگشت کالا</li>
+                                        <li><i class="fa fa-check"></i> تحویل سریع و آسان</li>
+                                        <li><i class="fa fa-check"></i> ضمانت اصل بودن کالا</li>
+                                    </ul>
+                                    <hr class="mb-20">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="table-listing qty mb-20">
+                                                <div class="row">
+                                                    <div class="col-xl-2 col-md-3 col-sm-12">
+                                                        <span>تعداد</span>
+                                                    </div>
+                                                    <div class="col-xl-10 col-md-9 col-sm-12">
+                                                        <div class="custom-qty">
+                                                            <button onclick="var result = document.getElementById('qty1'); var qty1 = result.value; if( !isNaN( qty1 ) && qty1 > 1 ) result.value--;return false;"
+                                                                    class="reduced items" type="button">
+                                                                <i class="fa fa-minus"></i>
+                                                            </button>
+                                                            <input type="text" class="input-text custom-qty" title="Qty" value="1"
+                                                                   maxlength="8" id="qty1" name="qty">
+                                                            <button onclick="var result = document.getElementById('qty1'); var qty1 = result.value; if (!isNaN(qty1))result.value++;return false;"
+                                                                    class="increase items" type="button">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+
+
+                                    </div>
+
+                                    <hr class="mb-20">
+                                    <h4 class="text-center">هرم بویایی</h4>
+
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-12 text-center">
+                                            <p>رایحه ابتدایی : </p>
+                                            <div class="d-inline-block text-center mr-4">
+                                                <img src="/Content/client/images/Boyaei/1.jpg">
+                                                <p>داوانا </p>
+                                            </div>
+                                            <div class="d-inline-block text-center mr-4">
+                                                <img src="/Content/client/images/Boyaei/2.jpg">
+                                                <p>انگور فرنگی</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-12 text-center">
+                                            <p>رایحه میانی : </p>
+                                            <div class="d-inline-block text-center mr-4">
+                                                <img src="/Content/client/images/Boyaei/3.jpg">
+                                                <p>گل مریم </p>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xl-4 col-md-12 text-center">
+                                            <p>رایحه پایانی : </p>
+                                            <div class="d-inline-block text-center mr-4">
+                                                <img src="/Content/client/images/Boyaei/4.jpg">
+                                                <p>وانیل</p>
+                                            </div>
+                                            <div class="d-inline-block text-center mr-4">
+                                                <img src="/Content/client/images/Boyaei/5.jpeg">
+                                                <p>مره</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <hr class="mb-20">
+
+                                    <div class="product-details-btn">
+                                        <!-- detail-page-btn  -->
+                                        <ul>
+                                            <li class="icon cart-icon add-to-cart">
+                                                <a href="#" class="btn btn-color"><span></span>افزودن به سبد خرید</a>
+                                            </li>
+                                            <li class="icon wishlist-icon">
+                                                <a href="#" class="btn btn-transparent"><span></span></a>
+                                            </li>
+                                            <li class="icon compare-icon">
+                                                <a href="#" class="btn btn-transparent"><span></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product detail contant end -->
+
+        <section class="product-tab-part position-r pb-100">
+            <div class="container">
+                <div class="product-tab-inner">
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="tabs">
+                                <ul class="nav nav-tabs">
+                                    <li><a class="tab-Description selected" title="Description">توضیحات محصول</a></li>
+                                    <li><a class="tab-Tags" title="Tags">برچسب ها</a></li>
+                                    <li><a class="tab-Review" title="Review">دیدگاه ها</a></li>
+                                    <li><a class="tab-Brand" title="Brand">درباره برند</a></li>
+                                </ul>
+                            </div>
+                            <div id="items">
+                                <div class="tab_content">
+                                    <ul>
+                                        <li>
+                                            <div class="items-Description selected">
+                                                این عطر بویی مرموز، عمیق و غیرعادی دارد و برای مردان مدرن و امروزی بهترین
+                                                انتخاب است. آقایان جوانی که عقاید و سلیقه‌ی خاصی دارند، طرفداران اصلی این
+                                                عطر هستند. وقتی این لالیک محبوب و معروف را روی پوست یا محل نبض خود اسپری
+                                                کنید، بوی چوب سرو شما را به خلسه‌ای عمیق می‌برد. پس از مدتی انکری نوآر به
+                                                دلیل وجود اسانس علف وتیور، نوعی هماهنگی و هارمونی معنوی در ذهن صاحب خود
+                                                ایجاد می‌کند. به‌واسطه‌ی این هماهنگی، اعتماد‌به‌نفس فرد نیز بالاتر می‌رود.
+                                                با گذشت زمانی طولانی، شاهد جانشینی بوی مشک و چوب کشمیر در رایحه‌ی انکری نوآر
+                                                خواهید بود
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="items-Tags">
+                                                <a href="#" class="badge badge-secondary text-light font-weight-light p-1">
+                                                    عطر
+                                                    مردانه
+                                                </a>
+                                                <a href="#" class="badge badge-secondary text-light font-weight-light p-1">
+                                                    عطر
+                                                    زنانه
+                                                </a>
+                                                <a href="#" class="badge badge-secondary text-light font-weight-light p-1">
+                                                    عطر
+                                                    و ادکلن
+                                                </a>
+                                                <a href="#" class="badge badge-secondary text-light font-weight-light p-1">ادکلن</a>
+                                                <a href="#" class="badge badge-secondary text-light font-weight-light p-1">عطر</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="items-Review">
+                                                <div class="comment-part">
+                                                    <h3 class="head-three">3 دیدگاه</h3>
+                                                    <ul class="comment-list mt-30">
+                                                        <li>
+                                                            <div class="comment-user">
+                                                                <img src="/Content/client/images/comment-img1.jpg" alt="comment-img">
+                                                            </div>
+                                                            <div class="comment-detail">
+                                                                <span class="commenter">حسین محمدی 12 مهر 99</span>
+                                                                <p>
+                                                                    این عطر یکی از بهترین عطر هایی بود که تا به حال استفاده
+                                                                    کردم . پیشنهاد می کنم این محصول را حتما خریداری کنید
+                                                                    پشیمان نمی شوید.
+                                                                </p>
+                                                                <a href="#" class="reply-btn btn btn-color small">پاسخ</a>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </li>
+                                                        <li>
+                                                            <ul class="comment-list child-comment">
+                                                                <li>
+                                                                    <div class="comment-user">
+                                                                        <img src="/Content/client/images/comment-img2.jpg"
+                                                                             alt="comment-img">
+                                                                    </div>
+                                                                    <div class="comment-detail">
+                                                                        <span class="commenter">محمد حسینی 12 مهر 99</span>
+                                                                        <p>
+                                                                            خیلی ممنون از نظر سازندتون
+                                                                        </p>
+                                                                        <a href="#" class="reply-btn btn btn-color small">پاسخ</a>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </li>
+
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="leave-comment-part pt-100">
+                                                    <h3 class="head-three">دیدگاه خود را بنویسید</h3>
+                                                    <form class="main-form">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group mb-30">
+                                                                    <input type="text" placeholder="نام و نام خانوادگی"
+                                                                           required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group mb-30">
+                                                                    <input type="text" placeholder="موضوع" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group mb-30">
+                                                                    <input type="text" placeholder="ایمیل" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="form-group mb-30">
+                                                                    <textarea placeholder="پیغام" rows="4"
+                                                                              required></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <button type="submit" class="btn-color">
+                                                                    ارسال دیدگاه
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="tab-Brand">
+                                                این عطر بویی مرموز، عمیق و غیرعادی دارد و برای مردان مدرن و امروزی بهترین
+                                                انتخاب است. آقایان جوانی که عقاید و سلیقه‌ی خاصی دارند، طرفداران اصلی این
+                                                عطر هستند. وقتی این لالیک محبوب و معروف را روی پوست یا محل نبض خود اسپری
+                                                کنید، بوی چوب سرو شما را به خلسه‌ای عمیق می‌برد. پس از مدتی انکری نوآر به
+                                                دلیل وجود اسانس علف وتیور، نوعی هماهنگی و هارمونی معنوی در ذهن صاحب خود
+                                                ایجاد می‌کند. به‌واسطه‌ی این هماهنگی، اعتماد‌به‌نفس فرد نیز بالاتر می‌رود.
+                                                با گذشت زمانی طولانی، شاهد جانشینی بوی مشک و چوب کشمیر در رایحه‌ی انکری نوآر
+                                                خواهید بود
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Product Section Start -->
+        <section class="product-section pb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="heading-part text-center mb-30 mb-sm-20">
+                            <h2 class="main_title">محصولات مرتبط</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="position-r">
+                    <div class="row">
+                        <div class="product-slider owl-carousel position-initial">
+                            <div class="item">
+                                <div class="product-item">
+                                    <div class="product-image">
+                                        <div class="sale-label"><span>تخفیف</span></div>
+                                        <a href="#">
+                                            <img class="cart-item-image" src="/Content/client/images/1.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="product-details-outer">
+                                        <div class="product-details">
+                                            <div class="product-title">
+                                                <a href="#">عطر زنانه</a>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="price">150،000 تومان</span>
+                                                <del class="price old-price">200،000 تومان</del>
+                                            </div>
+                                        </div>
+                                        <div class="product-details-btn">
+                                            <ul>
+                                                <li class="icon cart-icon add-to-cart">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li class="icon wishlist-icon">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li class="icon compare-icon">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-item">
+                                    <div class="product-image">
+                                        <div class="sale-label"><span>تخفیف</span></div>
+                                        <a href="#">
+                                            <img class="cart-item-image" src="/Content/client/images/2.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="product-details-outer">
+                                        <div class="product-details">
+                                            <div class="product-title">
+                                                <a href="#">عطر مردانه</a>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="price">150،000 تومان</span>
+                                                <del class="price old-price">200،000 تومان</del>
+                                            </div>
+                                        </div>
+                                        <div class="product-details-btn">
+                                            <ul>
+                                                <li class="icon cart-icon add-to-cart">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li class="icon wishlist-icon">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li class="icon compare-icon">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-item">
+                                    <div class="product-image">
+                                        <div class="sale-label"><span>تخفیف</span></div>
+                                        <a href="#">
+                                            <img class="cart-item-image" src="/Content/client/images/1.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="product-details-outer">
+                                        <div class="product-details">
+                                            <div class="product-title">
+                                                <a href="#">عطر زنانه</a>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="price">150،000 تومان</span>
+                                                <del class="price old-price">200،000 تومان</del>
+                                            </div>
+                                        </div>
+                                        <div class="product-details-btn">
+                                            <ul>
+                                                <li class="icon cart-icon add-to-cart">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li class="icon wishlist-icon">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li class="icon compare-icon">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-item">
+                                    <div class="product-image">
+                                        <div class="sale-label"><span>تخفیف</span></div>
+                                        <a href="#">
+                                            <img class="cart-item-image" src="/Content/client/images/2.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="product-details-outer">
+                                        <div class="product-details">
+                                            <div class="product-title">
+                                                <a href="#">عطر مردانه</a>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="price">150،000 تومان</span>
+                                                <del class="price old-price">200،000 تومان</del>
+                                            </div>
+                                        </div>
+                                        <div class="product-details-btn">
+                                            <ul>
+                                                <li class="icon cart-icon add-to-cart">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li class="icon wishlist-icon">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li class="icon compare-icon">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-item">
+                                    <div class="product-image">
+                                        <div class="sale-label"><span>تخفیف</span></div>
+                                        <a href="#">
+                                            <img class="cart-item-image" src="/Content/client/images/1.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="product-details-outer">
+                                        <div class="product-details">
+                                            <div class="product-title">
+                                                <a href="#">عطر زنانه</a>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="price">150،000 تومان</span>
+                                                <del class="price old-price">200،000 تومان</del>
+                                            </div>
+                                        </div>
+                                        <div class="product-details-btn">
+                                            <ul>
+                                                <li class="icon cart-icon add-to-cart">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li class="icon wishlist-icon">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li class="icon compare-icon">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-item">
+                                    <div class="product-image">
+                                        <div class="sale-label"><span>تخفیف</span></div>
+                                        <a href="#">
+                                            <img class="cart-item-image" src="/Content/client/images/2.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="product-details-outer">
+                                        <div class="product-details">
+                                            <div class="product-title">
+                                                <a href="#">عطر مردانه</a>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="price">150،000 تومان</span>
+                                                <del class="price old-price">200،000 تومان</del>
+                                            </div>
+                                        </div>
+                                        <div class="product-details-btn">
+                                            <ul>
+                                                <li class="icon cart-icon add-to-cart">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li class="icon wishlist-icon">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li class="icon compare-icon">
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Related Product Section End -->
+        <!-- Footer section start -->
+        <footer class="footer-part footer-border">
+            <div class="container">
+                <div class="footer-top ptb-100">
+                    <div class="mb_-30">
+                        <div class="row">
+                            <div class="col-12 col-lg-3 col-md-6">
+                                <div class="footer-about mb-sm-30">
+                                    <div class="footer-logo">
+                                        <a href="#">
+                                            <img src="/Content/client/images/logo.png" alt="logo">
+                                        </a>
+                                    </div>
+                                    <p class="footer-p">
+                                        گالری سه شین با جمع آوری بهترین نوع عطر ها از بهترین برند ها با
+                                        بهترین قیمت سعی در به دست آوردن هر چه بیشتر رضایت مشتریان خود دارد
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-6">
+                                <div class="footer-static-block">
+                                    <span class="opener plus"></span>
+                                    <h3 class="head-three">اطلاعات</h3>
+                                    <ul class="footer-menu footer-block-contant">
+                                        <li><a href="#">تماس با ما</a></li>
+                                        <li><a href="javascript:void(0)">برند ها</a></li>
+                                        <li><a href="#">بلاگ</a></li>
+                                        <li><a href="javascript:void(0)">شرایط و قوانین</a></li>
+                                        <li><a href="javascript:void(0)">حریم خصوصی</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-6">
+                                <div class="footer-static-block">
+                                    <span class="opener plus"></span>
+                                    <h3 class="head-three">حساب کاربری</h3>
+                                    <ul class="footer-menu footer-block-contant">
+                                        <li><a href="javascript:void(0)">تاریخچه سفارش ها</a></li>
+                                        <li><a href="#">علاقه مندی ها</a></li>
+                                        <li><a href="javascript:void(0)">تخفیف ها</a></li>
+                                        <li><a href="javascript:void(0)">هدایای ویژه</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-6">
+                                <div class="footer-static-block">
+                                    <span class="opener plus"></span>
+                                    <h3 class="head-three">تماس با ما</h3>
+                                    <div class="contact-box footer-block-contant">
+                                        <ul>
+                                            <li>
+                                                <div class="contact-thumb">
+                                                    <img src="/Content/client/images/address-icon.svg" alt="">
+                                                </div>
+                                                <div class="contact-box-detail">
+                                                    <p>
+                                                        خیابان میرزای شیرازی جنوبی بین کوچه 20 و 22 پلاک 166 گالری سه شین
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="contact-thumb">
+                                                    <img src="/Content/client/images/phone-icon.svg" alt="">
+                                                </div>
+                                                <div class="contact-box-detail">
+                                                    <p>09381982109</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="contact-thumb">
+                                                    <img src="/Content/client/images/mail-icon.svg" alt="">
+                                                </div>
+                                                <div class="contact-box-detail">
+                                                    <p><a href="#">info@gmail.com</a></p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom align-center">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="w-100">
+                                <p class="mb-0">
+                                    طراحی شده توسط<a href="https://www.spad.co/"
+                                                     target="_blank" title="Spad">اسپاد</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="social-media">
+                                <ul>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer section end -->
+    </div>
+
+    <script src="/Content/client/js/jquery-3.4.1.min.js"></script>
+    <script src="/Content/client/js/bootstrap.min.js"></script>
+    <script src="/Content/client/js/owl.carousel.min.js"></script>
+    <script src="/Content/client/js/modernizr.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            //If your <ul> has the id "glasscase"
+            $('#glasscase').glassCase({
+                'thumbsPosition': 'bottom',
+                'widthDisplayPerc': 100,
+                isDownloadEnabled: false,
+                zoomPosition: 'left',
+            });
+        });
+    </script>
+    <script src="/Content/client/js/custom.js"></script>
+    <script src="/Content/client/js/store.js"></script>
+
+</body>
+
+
+</html>

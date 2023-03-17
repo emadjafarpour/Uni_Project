@@ -1,0 +1,272 @@
+﻿@model GirlyMerely.Web.ViewModels.ProductListViewModel
+
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content">
+                    <h1 class="breadcrumb-hrading">@ViewBag.Title</h1>
+                    <ul class="breadcrumb-links">
+                        <li><a href="/">خانه</a></li>
+                        <li>@ViewBag.Title</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="shop-category-area" style="margin-bottom:100px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 order-lg-last col-md-12 order-md-first">
+                <div class="shop-top-bar">
+                    <div class="shop-tab nav mb-res-sm-15">
+                        <a class="active" href="#shop-1" data-toggle="tab">
+                            <i class="fa fa-th show_grid"></i>
+                        </a>
+                        <p>نتایج جستجو برای @ViewBag.Title</p>
+                    </div>
+                    <div class="select-shoing-wrap">
+                        <div class="shot-product">
+                            <p>فیلتر :</p>
+                        </div>
+                        <div class="shop-select">
+                            <select onchange="GetGrid()" name="sort" id="sort">
+                                <option value="date" selected="selected">تاریخ ثبت</option>
+                                <option value="name">اسم محصول</option>
+                                <option value="price-high-to-low">قیمت از زیاد به کم</option>
+                                <option value="price-low-to-high">قیمت از کم به زیاد</option>
+                                <option value="sale">پر فروش ها</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                @* Gril *@
+                <div id="grid"></div>
+            </div>
+            <div class="col-lg-3 order-lg-first col-md-12 order-md-last mb-res-md-60px mb-res-sm-60px">
+                <div class="left-sidebar">
+                    <div class="sidebar-heading">
+                        <div class="main-heading">
+                            <h2>محدود شده توسط</h2>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h4 class="pro-sidebar-title">دسته بندی ها@(ViewBag.ProductGroupName != null? $"ی {ViewBag.ProductGroupName}" : "")</h4>
+                            <div class="sidebar-widget-list">
+                                <ul>
+                                    @foreach (var item in Model.ProductGroups)
+                                    {
+                                        <li><a href="/Shop/ProductList/@item.Id">@item.Title</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget mt-20">
+                        <h4 class="pro-sidebar-title">قیمت</h4>
+                        <div class="price-filter mt-10">
+                            <div class="price-range-block">
+                                <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
+                                <div id="searchResults" class="search-results-block">50,000,000 تومان - 0 تومان</div>
+                                <div>
+                                    <input style="display:none" type="number" oninput="validity.valid||(value='50000000');" id="max_price" class="price-range-field" />
+                                    <input style="display: none" type="number" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget mt-30">
+                        <h4 class="pro-sidebar-title">برند</h4>
+                        <div class="sidebar-widget-list">
+                            <ul style="max-height: 200px;overflow-y: auto">
+                                @foreach (var brand in Model.Brands)
+                                {
+                                    <li>
+                                        <div class="sidebar-widget-list-left">
+                                            <input type="checkbox"
+                                                   id="b_@brand.Id"
+                                                   onchange="GetGrid()"
+                                                   value="@brand.Id"
+                                                   name="brands">
+                                            <a href="#">@brand.Name</a>
+                                            <span class="checkmark"></span>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    @foreach (var feature in Model.Features.Where(f => f.SubFeatures.Any()))
+                    {
+                        <div class="sidebar-widget mt-30">
+                            <h4 class="pro-sidebar-title">@feature.Title</h4>
+                            <div class="sidebar-widget-list">
+                                <ul style="max-height: 200px; overflow-y: auto">
+                                    @foreach (var subFeature in feature.SubFeatures)
+                                    {
+                                        <li>
+                                            <div class="sidebar-widget-list-left">
+                                                <input type="checkbox"
+                                                       id="sf_@subFeature.Id"
+                                                       onchange="GetGrid()"
+                                                       value="@subFeature.Id"
+                                                       name="subFeatures">
+                                                <a href="#">@subFeature.Value</a>
+                                                <span class="checkmark"></span>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Loading -->
+@section scripts
+{
+    <script>
+        function GetGrid(page) {
+            $("#loading").show();
+            var pageNumber = 1;
+            if (page != null) {
+                pageNumber = page;
+            }
+            var sort = $("#sort").find(":selected").val();
+            var take = 12;
+            var categoryId = @(Model.SelectedGroupId??null);
+            var searchString =  '@ViewBag.SearchString';
+            var brands = [];
+            var priceFrom = $('#min_price').val();;
+            var priceTo = $('#max_price').val();;
+
+
+            $("input[name='brands']").map(function() {
+                if ($(this).prop("checked") === true) {
+                    brands.push(parseInt($(this).val()));
+                }
+            });
+            var subFeatures = [];
+            $("[name='subFeatures']").map(function() {
+                if ($(this).prop("checked") === true) {
+                    subFeatures.push(parseInt($(this).val()));
+                }
+            });
+
+            @{
+                var offerId = ViewBag.OfferId == null ? 0 : ViewBag.OfferId;
+            }
+            var offerId = @offerId;
+
+            var grid = {
+                categoryId: categoryId,
+                searchString: searchString,
+                priceFrom: priceFrom,
+                priceTo: priceTo,
+                brands: brands.join('-'),
+                subFeatures: subFeatures.join('-'),
+                pageNumber: pageNumber,
+                take: take,
+                sort: sort,
+                OfferId: offerId
+            }
+
+            debugger;
+            $.ajax({
+                type: 'GET',
+                url: '/ProductsGrid',
+                data: grid,
+                success: function(data) {
+                    $("#grid").html(data);
+                },
+                error: function(data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                complete: function() {
+                    $("#loading").hide();
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            GetGrid();
+        });
+    </script>
+    <script>
+        function toPrice(num, sep){
+            var number = typeof num === "number"? num.toString() : num,
+                separator = typeof sep === "undefined"? ',' : sep;
+            return number.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1"+separator);
+        }
+        $(document).ready(function () {
+
+            $("#min_price,#max_price").on('change', function () {
+                var min_price_range = parseInt($("#min_price").val());
+
+                var max_price_range = parseInt($("#max_price").val());
+
+                if (min_price_range > max_price_range) {
+                    $('#max_price').val(min_price_range);
+                }
+
+                $("#slider-range").slider({
+                    values: [min_price_range, max_price_range]
+                });
+
+            });
+            $(function () {
+                $("#slider-range").slider({
+                    range: true,
+                    orientation: "horizontal",
+                    min: 0,
+                    max: 50000000,
+                    values: [0, 50000000],
+                    step: 100,
+
+                    slide: function (event, ui) {
+                        if (ui.values[0] === ui.values[1]) {
+                            return false;
+                        }
+
+                        $("#min_price").val(ui.values[0]);
+                        $("#max_price").val(ui.values[1]);
+                    }
+                });
+
+                $("#min_price").val($("#slider-range").slider("values", 0));
+                $("#max_price").val($("#slider-range").slider("values", 1));
+
+            });
+            var isDragging = false;
+            $("#slider-range,#price-range-submit")
+                .mousedown(function () {
+                    isDragging = false;
+                })
+                .mousemove(function () {
+                    isDragging = true;
+                })
+                .mouseup(function () {
+                    var wasDragging = isDragging;
+                    isDragging = false;
+                    if (wasDragging) {
+                        var min_price = $('#min_price').val();
+                        var max_price = $('#max_price').val();
+                        $("#searchResults").text(max_price + "تومان - " + min_price + "تومان");
+                        GetGrid();
+                    }
+                });
+            $("#slider-range,#price-range-submit").bind("mouseup", function () {
+
+                var min_price = $('#min_price').val();
+                var max_price = $('#max_price').val();
+                $("#searchResults").text(toPrice(max_price) + "تومان - " + toPrice(min_price) + "تومان");
+                GetGrid();
+            });
+
+        });
+    </script>
+}

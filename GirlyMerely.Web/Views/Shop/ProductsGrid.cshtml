@@ -1,0 +1,106 @@
+﻿@model List<GirlyMerely.Infratructure.Dtos.Product.ProductWithPriceDto>
+
+<div class="shop-bottom-area mt-35">
+    <div class="tab-content jump">
+        <div id="shop-1" class="tab-pane active">
+            @if (Model.Any())
+            {
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-xl-3 col-md-6 col-lg-4 col-sm-6 col-xs-12">
+                            <article class="list-product">
+                                <div class="img-block">
+                                    <a href="/Shop/Product/@item.Id" class="thumbnail">
+                                        <img class="first-img s-img" src="~/Files/ProductImages/Image/@item.Image" alt="@item.ShortTitle">
+                                        <img class="second-img" src="~/Files/ProductImages/Image/@item.Image" alt="@item.ShortTitle">
+                                    </a>
+                                </div>
+                                <div class="product-decs">
+                                    <a class="inner-link" href="/Shop/ProductList/@item.ProductGroupId"><span>@item.ProductGroupName</span></a>
+                                    <h2><a href="/Shop/Product/@item.Id" class="product-link">@item.ShortTitle</a></h2>
+                                    <div class="rating-product">
+                                        @for (int i = 1; i < item.Rate; i++)
+                                        {
+                                            if (i <= 5)
+                                            {
+                                                <i class="ion-android-star"></i>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="pricing-meta">
+                                        <ul>
+                                            @if (item.PriceAfterDiscount < item.Price)
+                                            {
+                                                <li class="old-price">@item.Price.ToString("##,###") تومان</li>
+                                                <li class="current-price prc">@item.PriceAfterDiscount.ToString("##,###") تومان</li>
+                                                <li class="discount-price">@item.DiscountPercentage٪</li>
+                                            }
+                                            else
+                                            {
+                                                if (item.Price > 0)
+                                                {
+                                                    <li class="current-price prc">@item.Price.ToString("##,###") تومان</li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="current-price prc">عدم موجودی</li>
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                @*<div class="add-to-link">
+                                        <ul>
+                                            @if (item.Price > 0)
+                                            {
+                                                <li class="cart"><a class="cart-btn" href="javascript:void(0)" onclick="AddToCart(@item.Id)">افزودن به سبد خرید </a></li>
+                                            }
+                                            else
+                                            {
+                                                <li class="cart"><a class="cart-btn">عدم موجودی</a></li>
+                                            }
+                                            <li>
+                                                <a href="javascript:void(0)" onclick="AddToWishList(@item.Id)"><i class="ion-android-favorite-outline"></i></a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#"><i class="ion-ios-shuffle-strong"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>*@
+                            </article>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <h4>محصولی یافت نشد</h4>
+            }
+        </div>
+    </div>
+    <div class="pro-pagination-style text-center">
+        <ul>
+            @{
+                if (ViewBag.CurrentPage > 1)
+                {
+                    <li>
+                        <a class="prev" href="#" onclick="GetGrid(@(ViewBag.CurrentPage-1))"><i class="ion-ios-arrow-right"></i></a>
+                    </li>
+                }
+                for (int i = 1; i <= ViewBag.PageCount; i++)
+                {
+                    <li><a class="@(i == ViewBag.CurrentPage? "active":null)" href="#" onclick="GetGrid(@i)">@i</a></li>
+
+                }
+                if (ViewBag.CurrentPage < ViewBag.PageCount)
+                {
+                    <li>
+                        <a class="next" href="#" onclick="GetGrid(@(ViewBag.CurrentPage+1))"><i class="ion-ios-arrow-left"></i></a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>

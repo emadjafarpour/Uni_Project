@@ -1,0 +1,64 @@
+﻿@model GirlyMerely.Web.ViewModels.CartModel
+
+@{ 
+    var count = 0;
+    if (Model?.CartItems != null && Model.CartItems.Any())
+    {
+        count = Model.CartItems.Count;
+    }
+}
+
+<a href="javascript:void(0)" class="count-cart">
+    @if (Model.TotalPrice != 0)
+    {
+        <span>@Model.TotalPrice.ToString("##,###") تومان</span>
+    }
+</a>
+<span class="cart-p-count">
+    @count
+</span>
+<div class="mini-cart-content">
+    <ul class="ul">
+        @if (Model?.CartItems != null && Model.CartItems.Any())
+        {
+            foreach (var item in Model.CartItems.Where(a=>a.Quantity!=0))
+            {
+                <li class="single-shopping-cart">
+                    <div class="shopping-cart-img">
+                        <a href="/Shop/Product/@item.Id"><img alt="@item.ProductName" src="/Files/ProductImages/Thumb/@item.Image"></a>
+                    </div>
+                    <div class="shopping-cart-title">
+                        <h4><a href="/Shop/Product/@item.Id">@item.ProductName (@item.Quantity)</a></h4>
+                        <span>@item.Price.ToString("##,###") تومان</span>
+                        <div class="shopping-cart-delete">
+                            <a href="javascript:void(0)" onclick="RemoveFromCart(@item.Id, @item.MainFeatureId, 'true')"><i class="ion-android-cancel"></i></a>
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+    </ul>
+    <div class="shopping-cart-total">
+
+        <h4 class="shop-total">مبلغ کل: <span class="shop-totalprice">@Model.TotalPrice.ToString("##,###") تومان</span></h4>
+    </div>
+    <div class="shopping-cart-btn text-center">
+        <div class="row">
+            <div class="col-md-6 mt-2">
+                <a class="default-btn" href="/Shop/Checkout">پرداخت</a>
+            </div>
+            <div class="col-md-6 mt-2">
+                <a class="default-btn" href="/Shop/Cart"> سبد خرید</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<style>
+        .price-cart {
+            position: relative;
+            color: #253237;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+    </style>*@

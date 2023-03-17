@@ -1,0 +1,59 @@
+﻿@model GirlyMerely.Web.Areas.Customer.Models.ActivationCodeViewModel
+@{
+    ViewBag.Title = "ورود به پنل کاربری";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Breadcrumb Area start -->
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content">
+                    <h1 class="breadcrumb-hrading">صفحه فعال سازی</h1>
+                    <ul class="breadcrumb-links">
+                        <li><a href="/">خانه</a></li>
+                        <li>فعال سازی</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+<!-- login area start -->
+<div class="login-register-area mb-60px mt-53px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                <div class="login-register-wrapper">
+                    <div class="tab-content">
+                            @using (Html.BeginForm("ActivationCode", "TwoFactor", FormMethod.Post))
+                            {
+                        <div class="row">
+                            @if (@ViewBag.result == "fail")
+                            {
+                                <div class="col-12 mb-20">
+                                    <div class="heading-part align-center">
+                                        <h4 class="heading">کد فعال سازی اشتباه است</h4>
+                                    </div>
+                                </div>
+                            }
+                            @Html.HiddenFor(x => x.UserId)
+                            <div class="col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Code)
+                                    @Html.TextBoxFor(m => m.Code, new { style = "width:100%;" })
+                                    @Html.ValidationMessageFor(m => m.Code, "")
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button name="submit" type="submit" class="btn-color right-side" style="border:none;border-radius:5px;background-color:#e0bbe4;color:#fff;padding:10px 5px;">فعال سازی</button>
+                            </div>
+                        </div>
+                            }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

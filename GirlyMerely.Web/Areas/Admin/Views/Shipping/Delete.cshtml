@@ -1,0 +1,29 @@
+﻿@model GirlyMerely.Core.Models.ShippingPrice
+
+@{
+    ViewBag.Title = "Delete";
+}
+<h4 class="card-label">
+    آیا مطمئن هستید که می خواهید این آیتم را حذف کنید؟
+</h4>
+<dl class="row" style="padding-top: 10px">
+    <dt class="col-sm-5">
+        @Html.DisplayNameFor(model => model.MaxCartOverallPrice)
+    </dt>
+    <dd class="col-sm-7">
+        @Html.DisplayFor(model => model.MaxCartOverallPrice)
+    </dd>
+    <dt class="col-sm-5">
+        @Html.DisplayNameFor(model => model.ShippingPriceValue)
+    </dt>
+    <dd class="col-sm-7">
+        @Html.DisplayFor(model => model.ShippingPriceValue)
+    </dd>
+</dl>
+<div style="float:left">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <input type="submit" value="حذف" class="btn btn-danger mr-2" />
+    }
+</div>

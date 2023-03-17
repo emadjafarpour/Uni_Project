@@ -1,0 +1,597 @@
+﻿@using GirlyMerely.Core.Utility
+@model GirlyMerely.Web.ViewModels.ProductDetailsViewModel
+
+@{
+    ViewBag.Title = Model.Product.Title;
+}
+
+@* این کد برای داشتن حالت پیش فرض برای ویژگی هر محصول است *@
+<input type="hidden" name="mainFeatureId" id="mainFeatureId" value="@Model.ProductMainFeatures[0].Id" />
+<input type="hidden" name="ProductId" id="ProductId" value="@Model.Product.Id" />
+
+@* این کد برای نداشتن حالت پیش فرض برای ویژگی هر محصول است *@
+@*<input type="hidden" name="mainFeatureId" id="mainFeatureId" value="" />*@
+
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content">
+                    <h1 class="breadcrumb-hrading">@Model.Product.ShortTitle</h1>
+                    <ul class="breadcrumb-links">
+                        <li><a href="/">خانه</a></li>
+                        @if (Model.Product.ProductGroup.ParentId == null)
+                        {
+                            <li><a href="#">@Model.Product.ProductGroup.Title</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#">@Model.Product.ProductGroup.Parent.Title</a></li>
+                            <li><a href="#">@Model.Product.ProductGroup.Title</a></li>
+                        }
+                        <li>@Model.Product.ShortTitle</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="product-details-area mtb-60px">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12">
+                <div class="product-details-img product-details-tab">
+                    <div class="zoompro-wrap zoompro-2">
+                        <div class="zoompro-border zoompro-span zoompro-relative">
+                            <div class="slide-button slideRight"><i class="fa fa-chevron-right"></i></div>
+                            <div class="slide-button slideLeft"><i class="fa fa-chevron-left"></i></div>
+                            @if (@Model.ProductGalleries.Count != 0)
+                            {
+                                <img class="zoompro" src="/Files/ProductImages/ProductGallery/@Model.ProductGalleries[0].Image"
+                                     data-zoom-image="/Files/ProductImages/ProductGallery/@Model.ProductGalleries[0].Image" alt="@Model.ProductGalleries[0].Title">
+                            }
+                        </div>
+                    </div>
+                    <div id="gallery" class="product-dec-slider-2">
+                        @for (int g = 0; g < Model.ProductGalleries.Count; g++)
+                        {
+                            <a class="@(g==0?"active":"")" data-image="/Files/ProductImages/ProductGallery/@Model.ProductGalleries[g].Image"
+                               data-zoom-image="/Files/ProductImages/ProductGallery/@Model.ProductGalleries[g].Image">
+                                <img src="/Files/ProductImages/ProductGallery/@Model.ProductGalleries[g].Image" alt="@Model.ProductGalleries[g].Title">
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12">
+                <div class="product-details-content">
+                    <h2>@Model.Product.ShortTitle</h2>
+                    <p class="reference">@Model.Product.Title</p>
+                    <div class="pro-details-rating-wrap">
+                        <div class="rating-product">
+                            @for (int r = 1; r < Model.Product.Rate; r++)
+                            {
+                                if (r <= 5)
+                                {
+                                    <i class="ion-android-star"></i>
+                                }
+                            }
+                        </div>
+                        <span class="read-review"><a class="reviews" href="#">تعداد نظرات (@Model.ProductComments.Count)</a></span>
+                    </div>
+                    <div class="pricing-meta">
+                        <ul>
+                            @if (Model.PriceAfterDiscount < Model.Price)
+                            {
+                                <li class="old-price" style="font-size:1rem">@Model.Price.ToString("##,###") تومان</li>
+                                <li class="current-price" style="font-size:22px">@Model.PriceAfterDiscount.ToString("##,###") تومان</li>
+                                <li class="discount-price">@Model.DiscountPercentage٪</li>
+
+                            }
+                            else
+                            {
+                                if (Model.Price > 0)
+                                {
+                                    <li class="current-price prc">@Model.Price.ToString("##,###") تومان</li>
+                                }
+                                else
+                                {
+                                    <li class="current-price prc">عدم موجودی</li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <p class="mb-5">
+                        @Model.Product.ShortDescription
+                        @{
+                            if (Model.Product.Brand != null)
+                            {
+                                <div class="brand-wrapper">
+
+                                    <i class="fab fa-font-awesome"></i>
+                                    <span>برند:</span>
+                                    <b>@Model.Product.Brand.Name</b>
+
+                                </div>
+                            }
+                        }
+                    </p>
+                    @{
+                        var featureValue = Model.ProductMainFeatures.Count > 0 ? Model.ProductMainFeatures[0].Value : "";
+                        var isColor = false;
+                    }
+                    @*@if (!string.IsNullOrEmpty(featureValue))
+                        {*@
+                    <div class="row main-feature-plane" style="padding: 13px;font-size:16px">
+                        <div class="col-12">
+                            <div class="table-listing qty mb-20">
+                                @{
+                                    var featureName = Model.ProductMainFeatures.FirstOrDefault().Feature.Title;
+                                    var i = 0;
+                                    <div class="row">
+                                        <div class="col-xl-2 col-md-3 col-sm-12">
+                                            <span>@featureName</span>
+                                        </div>
+                                        <div class="col-xl-10 col-md-9 col-sm-12">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    @foreach (var mainFeature in Model.ProductMainFeatures)
+                                                    {
+                                                        i++;
+                                                        var cssClass = "";
+                                                        if (mainFeature.Value != null)
+                                                        {
+                                                            if (System.Text.RegularExpressions.Regex.Match(mainFeature.Value, "^#(?:[0-9a-fA-F]{3}){1,2}$").Success)
+                                                            {
+                                                                isColor = true;
+                                                            }
+                                                        }
+
+                                                        if (i == 1 && isColor)
+                                                        {
+                                                            cssClass = "";// "active-color-main-feature";
+                                                        }
+                                                        else if (i == 1 && !isColor)
+                                                        {
+                                                            cssClass = "";// "active-main-feature";
+                                                        }
+
+                                                        <div id="main-feature-@mainFeature.Id" class="main-feature-item @cssClass">
+                                                            @if (isColor)
+                                                            {
+                                                                <div onclick="UpdateProductPrice(this, 'true', @mainFeature.ProductId,@mainFeature.Id)" class="color-button" style="background-color:@(mainFeature.SubFeature != null ? mainFeature.SubFeature.Value : mainFeature.Value); border:1px solid black;"></div>
+                                                            }
+                                                            else if (mainFeature.FeatureId == StaticVariables.ColorCodeFeatureId)
+                                                            {
+                                                                <div onclick="UpdateProductPrice(this, 'true', @mainFeature.ProductId,@mainFeature.Id)" class="color-button" style="background-color:@(mainFeature.SubFeature != null ? mainFeature.SubFeature.Value : mainFeature.Value)"></div>
+                                                            }
+                                                            else
+                                                            {
+                                                                if (mainFeature.Value == null || mainFeature.Value == "")
+                                                                {
+                                                                    <div onclick="UpdateProductPrice(this, 'false', @mainFeature.ProductId,@mainFeature.Id)" class="non-color-button"> <span>ویژگی بدون مقدار</span> </div>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div onclick="UpdateProductPrice(this, 'false', @mainFeature.ProductId,@mainFeature.Id)" class="non-color-button"> @(mainFeature.SubFeature != null ? mainFeature.SubFeature.Value : mainFeature.Value) </div>
+
+                                                                }
+                                                            }
+                                                        </div>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+
+                    @*}*@
+                    <div class="pro-details-quality mt-70px">
+                        <div class="multiple-add-section">
+                            <div><button class="btnProductCount" onclick="IncreaseProductCount()">+</button></div>
+                            <div><span readonly="readonly" id="txtProductCount">1</span></div>
+                            <div><button class="btnProductCount" onclick="DecreaseProductCount()">-</button></div>
+                        </div>
+                        <div class="pro-details-cart btn-hover">
+                            <a id="btnAddToCart" href="javascript:void(0)" onclick="AddToCart(@Model.Product.Id, $('#mainFeatureId').val())"> + افزودن به سبد خرید</a>
+                        </div>
+                    </div>
+                    <div class="pro-details-wish-com">
+                        <div class="pro-details-wishlist">
+                            <a href="javascript:void(0)" onclick="AddToWishList(@Model.Product.Id)"><i class="ion-android-favorite-outline"></i>به لیست دلخواه اضافه کنید</a>
+                        </div>
+                        @*<div class="pro-details-compare">
+                                <a href="#"><i class="ion-ios-shuffle-strong"></i>افزودن برای مقایسه</a>
+                            </div>*@
+                    </div>
+                    <div class="pro-details-social-info">
+                        <span>اشتراک گذاری</span>
+                        <div class="social-info">
+                            <ul>
+                                <li>
+                                    <a href="#"><i class="ion-social-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-google"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pro-details-policy">
+                        <ul>
+                            <li>
+                                <img src="assets/images/icons/policy.png" alt="">@*<span>نحوه تحویل کالا : ارسال رایگان کمتر از 48 ساعت </span>*@ <span>@Model.ProductDeliveryMethod.StaticContentType.Name : @Model.ProductDeliveryMethod.Title </span>
+                            </li>
+                            <li>
+                                <img src="assets/images/icons/policy-2.png" alt="">@*<span>زمان بازگشت کالا : 10 روز پس از تحویل کالا</span>*@ <span>@Model.ProductReturnTime.StaticContentType.Name : @Model.ProductReturnTime.Title</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="description-review-area mb-60px">
+    <div class="container">
+        <div class="description-review-wrapper">
+            <div class="description-review-topbar nav">
+                <a data-toggle="tab" href="#des-details1">توضیحات </a>
+                <a class="active" data-toggle="tab" href="#des-details2">مشخصات فنی</a>
+                <a data-toggle="tab" href="#des-details3">نظرات (@Model.ProductComments.Count)</a>
+            </div>
+            <div class="tab-content description-review-bottom">
+                <div id="des-details2" class="tab-pane active">
+                    <div class="product-anotherinfo-wrapper">
+                        <ul>
+                            @foreach (var item in Model.ProductFeatureValues)
+                            {
+                                <li>
+                                    <span>@item.Feature.Title</span>
+                                    @if (item.SubFeatureId == null)
+                                    {
+                                        @item.Value
+                                    }
+                                    else
+                                    {
+                                        @item.SubFeature.Value
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div id="des-details1" class="tab-pane">
+                    <div class="product-description-wrapper">
+                        <p>
+                            @Html.Raw(Model.Product.Description)
+                        </p>
+                    </div>
+                </div>
+                <div id="des-details3" class="tab-pane">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="review-wrapper">
+                                @foreach (var comment in Model.ProductComments.Where(c => c.ParentId == null))
+                                {
+                                    <div class="single-review">
+                                        <div class="review-img">
+                                            <img src="/Files/UserAvatars/user-avatar.png" alt="@comment.Name" width="80">
+                                        </div>
+                                        <div class="review-content">
+                                            <div class="review-top-wrap">
+                                                <div class="review-left">
+                                                    <div class="review-name">
+                                                        <h4>@comment.Name @comment.AddedDate</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="review-left pro-details-cart">
+                                                    <a href="javascript:void(0)" style="color: white;padding:0 30px" onclick="AnswerComment('@comment.Id','@comment.Name')">پاسخ</a>
+                                                </div>
+                                            </div>
+                                            <div class="review-bottom">
+                                                <p>
+                                                    @comment.Message
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    foreach (var childComment in Model.ProductComments.Where(c => c.ParentId == comment.Id))
+                                    {
+                                        <div class="single-review child-review" style="padding-bottom:50px">
+                                            <div class="review-img">
+                                                <img src="/Files/UserAvatars/user-avatar.png" alt="@childComment.Name" width="80">
+                                            </div>
+                                            <div class="review-content">
+                                                <div class="review-top-wrap">
+                                                    <div class="review-left">
+                                                        <div class="review-name">
+                                                            <h4>@childComment.Name @childComment.AddedDate</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="review-bottom">
+                                                    <p>
+                                                        @childComment.Message
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="ratting-form-wrapper pl-50">
+                                <h3 style="padding-bottom:10px" id="answerPerson">یک نظر اضافه کنید</h3>
+                                <div class="ratting-form">
+                                    @using (Html.BeginForm("PostComment", "Shop", FormMethod.Post, new { id = "commentform", @class = "ratting-form" }))
+                                    {
+                                        <input type="hidden" id="ProductId" name="ProductId" value="@Model.Product.Id">
+                                        <input type="hidden" id="ParentId" name="ParentId" value="">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group rating-form-style mb-10">
+                                                    <input type="text" name="Name" id="Name" placeholder="نام و نام خانوادگی" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 rating-form-style mb-10">
+                                                <div class="form-group">
+                                                    <input type="text" name="Email" id="Email" placeholder="ایمیل" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 rating-form-style form-submit">
+                                                <div class="form-group">
+                                                    <textarea placeholder="پیغام" name="Message" id="Message" rows="4" required></textarea>
+                                                </div>
+                                                <input type="submit" value="ارسال">
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Action("RelatedProductsSection", "Shop", new { productId = Model.Product.Id, take = 8 })
+<!-- Related Product Section Start -->
+<!-- Related Product Section End -->
+<style>
+    .my-error-class {
+        color: darkred !important; /* red */
+    }
+</style>
+
+@{
+    var color = "false";
+}
+@if (System.Text.RegularExpressions.Regex.Match(Model.ProductMainFeatures[0].Value, "^#(?:[0-9a-fA-F]{3}){1,2}$").Success)
+{
+    color = "true";
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+
+            debugger;
+            //$(".product-details-area").LoadingOverlay("show", {
+            //    image: "",
+            //    fontawesome: "fa fa-spinner fa-spin"
+            //});
+
+            //$("#mainFeatureId").val(mainFeatureId);
+
+
+            var mainFeatureId = $("#mainFeatureId").val();
+            var productId = $("#ProductId").val();
+
+            $.ajax({
+                type: 'GET',
+                url: '/Shop/GetProductPrice?productId=' + productId + '&mainFeatureId=' + mainFeatureId,
+                success: function (data) {
+                    debugger;
+                    $(".active-color-main-feature").removeClass("active-color-main-feature");
+                    $(".active-main-feature").removeClass("active-main-feature");
+
+                    if (@color == true) {
+                        $('#main-feature-' +mainFeatureId).addClass("active-color-main-feature");
+                        debugger;
+                    }
+                    else {
+                        $('#main-feature-' + mainFeatureId).addClass("active-main-feature");
+                    }
+                    debugger;
+
+                    /* $(".product-details-area").LoadingOverlay("hide");*/
+                    var obj = JSON.parse(data);
+                    $(".current-price").html(obj.priceAfterDiscount + " تومان");
+                    $("#productPrice").html(obj.price);
+                    $("#mainFeatureId").val(mainFeatureId);
+                    $("#productPriceAfterDiscount").html(obj.priceAfterDiscount);
+
+                    debugger;
+                    if (obj.count < 1) {
+                        debugger;
+                        $("#btnAddToCart").html("عدم موجودی کالا");
+                        $("#btnAddToCart").addClass('disabled');
+                        $("#btnAddToCart").attr('disabled', true);
+                    }
+                    else {
+                        debugger;
+                        $("#btnAddToCart").html("+ افزودن به سبد خرید");
+                        $("#btnAddToCart").removeClass('disabled');
+                        $("#btnAddToCart").attr('disabled', false);
+                    }
+
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                complete: function () {
+                }
+            });
+
+
+            /*
+            $('#glasscase').glassCase({
+                'thumbsPosition': 'bottom',
+                'widthDisplayPerc': 100,
+                isDownloadEnabled: false,
+                zoomPosition: 'left'
+            });*/
+
+            var slidesCount = $(".slick-slide").length;
+            var selectedImageId = 0;
+            $(".slideRight").on("click", function () {
+                if (selectedImageId == 0) {
+                    // selectedImageId = slidesCount - 1; // last image
+                    ($(".slick-slide")[selectedImageId]).click();
+                }
+                else {
+                    selectedImageId = parseInt(selectedImageId) - 1;
+                    ($(".slick-slide")[selectedImageId]).click();
+                }
+            })
+            $(".slideLeft").on("click", function () {
+                if (selectedImageId == $(".slick-slide").length - 1) {// check if on last image
+                    //selectedImageId = 0; // first image
+                    ($(".slick-slide")[selectedImageId]).click();
+                }
+                else {
+                    selectedImageId = parseInt(selectedImageId) + 1;
+                    ($(".slick-slide")[selectedImageId]).click();
+                }
+            })
+            $(".slick-slide").on("click", function (e) {
+                var id = $(this).index();
+                selectedImageId = id;
+            })
+        });
+
+        function SetDefaultForSingularMainFeatures(mainFeatureId, isColor) {
+            $("#mainFeatureId").val(mainFeatureId);
+
+            if (isColor.toLowerCase() == "true") {
+                $("#main-feature-" + mainFeatureId).addClass("active-color-main-feature");
+            }
+            else {
+                $("#main-feature-" + mainFeatureId).addClass("active-main-feature");
+            }
+        }
+
+        function UpdateProductPrice(target, isColor, productId, mainFeatureId) {
+            debugger;
+            //$(".product-details-area").LoadingOverlay("show", {
+            //    image: "",
+            //    fontawesome: "fa fa-spinner fa-spin"
+            //});
+
+            $("#mainFeatureId").val(mainFeatureId);
+
+            $.ajax({
+                type: 'GET',
+                url: '/Shop/GetProductPrice?productId=' + productId + '&mainFeatureId=' + mainFeatureId,
+                success: function (data) {
+
+                    $(".active-color-main-feature").removeClass("active-color-main-feature");
+                    $(".active-main-feature").removeClass("active-main-feature");
+
+                    if (isColor == "true") {
+                        $(target).parent().addClass("active-color-main-feature");
+                    }
+                    else {
+                        $(target).parent().addClass("active-main-feature");
+                    }
+
+                    /* $(".product-details-area").LoadingOverlay("hide");*/
+                    var obj = JSON.parse(data);
+                    $(".current-price").html(obj.priceAfterDiscount + " تومان");
+                    $("#productPrice").html(obj.price);
+                    $("#mainFeatureId").val(mainFeatureId);
+                    $("#productPriceAfterDiscount").html(obj.priceAfterDiscount);
+
+
+                    if (obj.count < 1) {
+                        $("#btnAddToCart").html("عدم موجودی کالا");
+                        $("#btnAddToCart").addClass('disabled');
+                        $("#btnAddToCart").attr('disabled', true);
+                    }
+                    else {
+                        $("#btnAddToCart").html("+ افزودن به سبد خرید");
+                        $("#btnAddToCart").removeClass('disabled');
+                        $("#btnAddToCart").attr('disabled', false);
+                    }
+
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                complete: function () {
+                }
+            });
+        }
+    </script>
+
+    @if (Model.ProductMainFeatures.Count > 0)
+    {
+        <script>
+                SetDefaultForSingularMainFeatures(@Model.ProductMainFeatures[0].Id, "@isColor");
+        </script>
+    }
+
+    <script>
+        $("#commentform").validate({
+            errorClass: "my-error-class",
+            rules: {
+                Name: "required",
+                Message: "required",
+                Email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                Name: "نام خود را وارد کنید",
+                Message: "پیام خود را وارد کنید",
+                Email: {
+                    required: "ایمیل خود را وارد کنید",
+                    email: "ایمیل وارد شده معتبر نیست"
+                },
+            }
+        });
+    </script>
+    <script>
+        function AnswerComment(parentId, parentName) {
+            $('#answerPerson').html("در حال پاسخ دادن به  " +
+                parentName +
+                "<a class='reply-btn btn btn-color small' style='margin-right:10px;cursor:pointer;color: red' onclick='removePerson()'>حذف</a>");
+            $('#ParentId').val(parentId);
+        }
+
+        function removePerson() {
+            $('#answerPerson').html("");
+            $('#ParentId').val("");
+        }
+    </script>
+}

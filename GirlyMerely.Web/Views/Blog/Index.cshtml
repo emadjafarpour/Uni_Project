@@ -1,0 +1,99 @@
+﻿@model List<GirlyMerely.Web.ViewModels.LatestArticlesViewModel>
+<div id="banner-part" class="banner inner-banner">
+    <div class="container">
+        <div class="bread-crumb-main">
+            <h1 class="banner-title">@ViewBag.Title</h1>
+            <div class="breadcrumb">
+                <ul class="inline">
+                    <li><a href="/">خانه</a></li>
+                    <li>@ViewBag.Title</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="blog-listing ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-4">
+                <div id="sidebar-main" class="sidebar sidebar-default sidebar-separate sidebar-fixed">
+                    <div class="sidebar-content">
+                        <div class="sidebar-default">
+                            <form method="get" action="/Blog" id="form" class="category-content searching">
+                                <input type="text" name="searchString" title="searchString" value="@ViewBag.SearchString" placeholder="جستجو...">
+                                <a href="#" onclick="$('#form').submit()">
+                                    <i class="fa fa-search" title="جستجو"></i>
+                                </a>
+                            </form>
+                        </div>
+                        @Html.Action("ArticleCategoriesSection", "Blog")
+                        @Html.Action("TopArticlesSection", "Blog", new { take = 3 })
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-8">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-12">
+                            <div class="blog-item">
+                                <div class="row m-0">
+                                    <div class="col-sm-6 col-md-5 p-0">
+                                        <div class="blog-image">
+                                            <a href="/Blog/Article/@item.Id/@item.Title.Replace(' ','-')">
+                                                <img src="~/Files/ArticleImages/Thumb/@item.Image" alt="@item.Title">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-7 p-0">
+                                        <div class="blog-detail">
+                                            <span class="bloger-date">@item.Author @item.PersianDate</span>
+                                            <h3 class="head-three mb-10"><a href="/Blog/Article/@item.Id/@item.Title.Replace(' ','-')">@item.Title</a></h3>
+                                            <p>@item.ShortDescription</p>
+                                            <a href="/Blog/Article/@item.Id/@item.Title.Replace(' ','-')" class="readmore-btn">بیشتر بخوانید</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="page-number align-center pb-md-60">
+                    <ul class="pagination">
+                        @{
+                            if (ViewBag.CurrentPage > 1)
+                            {
+                                <li class="page-item prev">
+                                    <a class="page-link"
+                                       href="/Blog?pageNumber=@(ViewBag.CurrentPage-1)@(ViewBag.CategoryId != null? $"&category={ViewBag.CategoryId}":null)@(ViewBag.SearchString != null? $"&searchString={ViewBag.SearchString}":null)">
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </li>
+                            }
+                            for (int i = 1; i <= ViewBag.PageCount; i++)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link @(i == ViewBag.CurrentPage? "active":null)"
+                                       href="/Blog?pageNumber=@i@(ViewBag.CategoryId != null? $"&category={ViewBag.CategoryId}":null)@(ViewBag.SearchString != null? $"&searchString={ViewBag.SearchString}":null)">
+                                        @i
+                                    </a>
+                                </li>
+                            }
+                            if (ViewBag.CurrentPage < ViewBag.PageCount)
+                            {
+                                <li class="page-item next">
+                                    <a class="page-link"
+                                       href="/Blog?pageNumber=@(ViewBag.CurrentPage+1)@(ViewBag.CategoryId != null? $"&category={ViewBag.CategoryId}":null)@(ViewBag.SearchString != null? $"&searchString={ViewBag.SearchString}":null)">
+                                        <i class="fa fa-angle-left"></i>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

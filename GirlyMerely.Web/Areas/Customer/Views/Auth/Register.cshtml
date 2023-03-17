@@ -1,0 +1,64 @@
+﻿@model GirlyMerely.Web.ViewModels.RegisterCustomerViewModel
+@{
+    ViewBag.Title = "ثبت نام";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="contant">
+    <div id="banner-part" class="banner inner-banner">
+        <div class="container">
+            <div class="bread-crumb-main">
+                <h1 class="banner-title">ثبت نام</h1>
+                <div class="breadcrumb">
+                    <ul class="inline">
+                        <li><a href="/">خانه</a></li>
+                        <li>ثبت نام</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login-register-area mb-60px mt-53px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
+                            <a data-toggle="tab" href="#lg1">
+                                <h4>ورود</h4>
+                            </a>
+                            <a data-toggle="tab" href="#lg2" class="active" >
+                                <h4>ثبت نام</h4>
+                            </a>
+                        </div>
+                        <div class="tab-content">
+                            <div id="lg1" class="tab-pane">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <span class="text-danger">@ViewBag.LoginError</span>
+                                        @Html.Action("LoginPartial", "Auth", new { area = "Customer", returnUrl = ViewBag.ReturnUrl })
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="lg2" class="tab-pane active">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <span class="text-danger">@ViewBag.RegisterError</span>
+                                        @Html.Action("RegisterPartial", "Auth", new { area = "Customer", returnUrl = ViewBag.ReturnUrl })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .field-validation-error span {
+        color: darkred;
+    }
+</style>
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

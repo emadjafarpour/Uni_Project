@@ -1,0 +1,146 @@
+﻿@model GirlyMerely.Web.ViewModels.InvoiceDetails
+@{
+    ViewBag.Title = "فاکتور سفارش";
+}
+<!-- Breadcrumb Area start -->
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content">
+                    <h1 class="breadcrumb-hrading">فاکتور سفارش</h1>
+                    <ul class="breadcrumb-links">
+                        <li><a href="/">خانه</a></li>
+                        <li>فاکتور سفارش</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+<!-- checkout area start -->
+<div class="checkout-area mt-60px mb-40px">
+    <div class="container">
+        <div class="your-order-area">
+            <h3>سفارش شما</h3>
+            <div class="your-order-wrap gray-bg-4">
+                <div class="your-order-product-info">
+                    <div class="your-order-top">
+                        <ul>
+                            <li>جزئیات صورتحساب</li>
+                        </ul>
+                    </div>
+                    <div class="your-order-middle">
+                        <ul>
+                            <li>
+                                نام و نام خانوادگی<span>@Model.Invoice.CustomerName</span>
+                            </li>
+                            <li>
+                                آدرس ایمیل <span>@Model.Invoice.Email</span>
+                            </li>
+                            <li>
+                                تلفن <span>@Model.Invoice.Phone</span>
+                            </li>
+                            <li>
+                                آدرس <span>@Model.Invoice.Address</span>
+                            </li>
+                            <li>
+                                کد پستی <span>@Model.Invoice.PostalCode</span>
+                            </li>
+                            <li>
+                                استان <span>@Model.Invoice.GeoDivision.Title</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="your-order-top">
+                        <ul>
+                            <li>محصول</li>
+                            <li>جمع</li>
+                        </ul>
+                    </div>
+                    <div class="your-order-middle">
+                        <ul>
+                            @if (Model.InvoiceItems != null)
+                            {
+                                foreach (var item in Model.InvoiceItems)
+                                {
+                                    <li><span class="order-middle-left"> @item.Product.ShortTitle (@item.Quantity) </span> <span class="order-price">@((item.TotalPrice).ToString("##,###")) تومان</span></li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                    @*<div class="your-order-bottom">
+                            <ul>
+                                <li class="your-order-shipping">حمل نقل</li>
+                                <li>ارسال رایگان</li>
+                            </ul>
+                        </div>
+                        <hr />*@
+                    <div class="your-order-bottom">
+                        <ul>
+                            <li class="your-order-shipping">تاریخ</li>
+                            <li>@Model.PersianRegisterDate</li>
+                        </ul>
+                    </div>
+                    <hr />
+                    <div class="your-order-bottom">
+                        <ul>
+                            <li class="your-order-shipping">شماره سفارش</li>
+                            <li>#@Model.Invoice.InvoiceNumber</li>
+                        </ul>
+                    </div>
+                    <hr />
+                    <div class="your-order-bottom">
+                        <ul>
+                            <li class="your-order-shipping">مبلغ سفارش</li>
+                            <li>@Model.Invoice.TotalPriceBeforeDiscount.ToString("##,###") تومان</li>
+                        </ul>
+                    </div>
+                    <hr />
+                    <div class="your-order-bottom">
+                        @{
+                            var shippingAmount = Model.Invoice.ShippingPriceAmount;
+                            var strShippingAmount = string.IsNullOrEmpty(shippingAmount.ToString("##,###")) ? "0" : shippingAmount.ToString("##,###");
+                        }
+                        <ul>
+                            <li class="your-order-shipping">هزینه ارسال</li>
+                            <li>@strShippingAmount تومان</li>
+                        </ul>
+                    </div>
+                    <hr />
+                    <div class="your-order-bottom">
+                        <ul>
+                            <li class="your-order-shipping">تخفیف</li>
+                            <li style="color:#5cb85c">@Model.Invoice.DiscountAmount.ToString("##,###") تومان</li>
+                        </ul>
+                    </div>
+                    <div class="your-order-total">
+                        <ul>
+                            <li class="order-total">مبلغ نهایی</li>
+                            <li style="color: #E03A2C">@Model.Invoice.TotalPrice.ToString("##,###") تومان</li>
+                        </ul>
+                    </div>
+                    <form action="/Shop/Payment" method="post" id="form">
+                        <input type="hidden" name="invoiceId" id="invoiceId" value="@Model.Invoice.Id" />
+                        @if (Model.Invoice.DiscountAmount != 0)
+                        {
+                            <input type="hidden" name="customerId" id="customerId" value="@Model.Invoice.CustomerId" />
+                        }
+
+                        <div style="width: 90%; padding-top: 30px" class="pro-details-quality mt-0px">
+                            <div style="width: 100%" class="pro-details-cart btn-hover">
+                                <a href="javascript:void(0)" onclick="$('#form').submit()" class="btn-hover" style="width: 100%; text-align: center">پرداخت</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- checkout area end -->
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,62 @@
+﻿@model GirlyMerely.Web.ViewModels.CheckoutForm
+<div class="col-lg-7">
+    <div class="billing-info-wrap">
+        <h3>جزئیات صورتحساب</h3>
+        @using (Html.BeginForm("Checkout", "Shop", FormMethod.Post, new { id = "form", @class = "row" }))
+        {
+            @Html.HiddenFor(model => model.InvoiceNumber)
+            <div class="col-12">
+                <div class="billing-info mb-20px">
+                    @Html.LabelFor(model => model.Name, new { })*
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "form-text text-danger" })
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="billing-info mb-20px">
+                    <label for="Email">آدرس ایمیل (اختیاری)</label>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "form-text text-danger" })
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="billing-info mb-20px">
+                    @Html.LabelFor(model => model.Phone, new { })*
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "form-text text-danger" })
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="billing-info mb-20px">
+                    @Html.LabelFor(model => model.Address, new { })*
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "form-text text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="billing-info mb-20px">
+                    <label for="PostalCode">کد پستی (اختیاری)</label>
+                    @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "form-text text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="">
+                    @Html.LabelFor(model => model.GeoDivisionId, "استان", new { })
+                    @Html.DropDownList("GeoDivisionId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.GeoDivisionId, "", new { @class = "form-text text-danger" })
+                </div>
+            </div>
+            @Html.EditorFor(model => model.DiscountCode, new { htmlAttributes = new { @type = "hidden", @readonly = "readonly" } })
+            @Html.EditorFor(model => model.InvoiceNumber, new { htmlAttributes = new { @type = "hidden", @readonly = "readonly" } })
+            <div style="width: 100%" class="pro-details-quality mt-0px">
+                <div style="width: 100%" class="pro-details-cart btn-hover">
+                    <input type="submit" class="btn-hover" style="width: 100%; text-align: center" value="سفارش" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script>
+    $.validator.unobtrusive.parse("#form");
+</script>

@@ -1,0 +1,158 @@
+﻿@using GirlyMerely.Core.Models
+@using GirlyMerely.Infrastructure.Helpers;
+@model GirlyMerely.Core.Models.Product
+
+@{
+    var ProductGroups = ViewBag.ProductGroups as List<ProductGroup>;
+}
+
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <a href="javascript:void(0);" onclick="RemoveTab(@ViewBag.Index)"><i class="fa fa-trash" style="color:#ff0000"></i></a>
+                </div>
+
+                <div class="form-group">
+                    <label>عنوان مختصر محصول</label>
+                    <div class="col-md-10">
+                        <input class="form-control  text-box single-line" data-val="true" data-val-maxlength="عنوان مختصر محصول باید کمتر از 300 کارکتر باشد" data-val-maxlength-max="300" id="ShortTitle-@ViewBag.Index" name="ShortTitle-@ViewBag.Index" type="text" value="@Model.ShortTitle">
+                        <span class="field-validation-valid form-text text-danger" data-valmsg-for="ShortTitle-@ViewBag.Index" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Title-@ViewBag.Index">عنوان محصول</label>
+                    <div class="col-md-10">
+                        <input class="form-control  text-box single-line" data-val="true" data-val-maxlength="عنوان محصول باید کمتر از 600 کارکتر باشد" data-val-maxlength-max="600" data-val-required="لطفا عنوان محصول را وارد کنید" id="Title-@ViewBag.Index" name="Title-@ViewBag.Index" type="text" value="@Model.Title">
+                        <span class="field-validation-valid form-text text-danger" data-valmsg-for="Title-@ViewBag.Index" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ShortDescription-@ViewBag.Index">توضیح کوتاه</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control  text-box multi-line" data-val="true" data-val-maxlength="توضیح کوتاه باید کمتر از 2000 کارکتر باشد" data-val-maxlength-max="2000" id="ShortDescription-@ViewBag.Index" name="ShortDescription-@ViewBag.Index">@Model.ShortDescription</textarea>
+                        <span class="field-validation-valid form-text text-danger" data-valmsg-for="ShortDescription-@ViewBag.Index" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-label">تصویر</label>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="image-input image-input-outline" id="product-image-@ViewBag.Index">
+                            <div class="image-input-wrapper" style="background-image: url(assets/media/users/100_1.jpg)"></div>
+
+                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="آپلود تصویر">
+                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                <input type="file" name="ProductImage-@ViewBag.Index" id="ProductImage-@ViewBag.Index" accept=".png, .jpg, .jpeg" />
+                                <input type="hidden" name="product_image_remove" />
+                            </label>
+
+                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="حذف تصویر">
+                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Rate-@ViewBag.Index">امتیاز محصول</label>
+                    <div class="col-md-10">
+                        <input class="form-control  text-box single-line" data-val="true" data-val-number="The field امتیاز محصول must be a number." data-val-required="The امتیاز محصول field is required." id="Rate-@ViewBag.Index" name="Rate-@ViewBag.Index" type="number" value="@Model.Rate">
+                        <span class="field-validation-valid form-text text-danger" data-valmsg-for="Rate-@ViewBag.Index" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Description-@ViewBag.Index">توضیح</label>
+            <div class="col-md-10">
+                <textarea name="Description-@ViewBag.Index" id="Description-@ViewBag.Index" class="form-control " style="visibility: hidden; display: none;">@Model.Description</textarea>
+                <span class="field-validation-valid form-text text-danger" data-valmsg-for="Description-@ViewBag.Index" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="">انتخاب گروه</label>
+                    <div class="col-lg-4 col-md-9 col-sm-12">
+                        <div id="ParentGroupId-@ViewBag.Index" class="tree-demo">
+                            <ul>
+                                @foreach (var group in ProductGroups.Where(p => p.ParentId == null))
+                                {
+                                    var result = HierarchyLoop.GetProductGroupHierarchy(group, Model.ProductGroupId, null, ViewBag.Index);
+                                    @Html.Raw(result)
+                                }
+                            </ul>
+                        </div>
+                        <span class="text-danger" style="display: none;color:darkred" id="validate_product_group-@ViewBag.Index">لطفا یک گروه را انتخاب کنید</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="">انتخاب برند</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="Brands-@ViewBag.Index" name="Brands">
+                            <option value="">لطفا یک گروه را انتخاب کنید</option>
+                        </select>
+                    </div>
+                    <span class="text-danger" style="display: none" id="validate_brand-@ViewBag.Index">لطفا یک برند را انتخاب کنید</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="">ویژگی های محصول</label>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div id="productGroupFeatures-@ViewBag.Index">لطفا گروه محصول را انتخاب کنید</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+        $(function () {
+            $('#Description-@ViewBag.Index').ckeditor();
+
+        });
+    $('#ParentGroupId-@ViewBag.Index').jstree({
+            "core": {
+                "themes": {
+                    "responsive": false
+                }
+            },
+            "types": {
+                "default": {
+                    "icon": "fa fa-box"
+                }
+            },
+            "plugins": ["types"]
+        });
+        $('#ParentGroupId-@ViewBag.Index').on('select_node.jstree',
+            function (e, data) {
+                var selectedGroupArr = data.node.id.split('_'); // ["pg","id"]
+                var productGroupId = parseInt(selectedGroupArr[1]); // id
+                getProductGroupFeatures(productGroupId, @ViewBag.Index);
+                getProductGroupBrands(productGroupId, @ViewBag.Index);
+            });
+        new KTImageInput('product-image-@ViewBag.Index');
+
+        @{
+            int brandId = Model.BrandId != null ? Model.BrandId.Value : 0;
+            var groupId = Model.ProductGroupId != null ? Model.ProductGroupId.Value : 0;
+        }
+
+        var currentBrandId = @brandId;
+        getProductGroupBrands(@groupId, currentBrandId, @ViewBag.Index);
+        getProductGroupFeatures(@groupId, @ViewBag.Index);
+        setProductFeatures(@Model.Id, @ViewBag.Index);
+
+    </script>
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/GirlyMerely.Notification/obj/Debug/net5.0
+/GirlyMerely.Notification/obj
+/GirlyMerely.Web/obj/Release/Package/PackageTmp
+/GirlyMerely.Web/obj/Release/TempPE
+/GirlyMerely.Web/obj/Release/TransformWebConfig/assist
+/GirlyMerely.Web/obj/Release/TransformWebConfig

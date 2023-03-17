@@ -1,0 +1,167 @@
+﻿@model List<GirlyMerely.Infratructure.Dtos.Product.ProductWithPriceDto>
+<section class="hot-deal-area">
+    <div class="container">
+        <div class="row">
+            <!-- New Arrivals Area Start -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Section Title -->
+                        <div class="section-title ml-0px mt-res-sx-30px">
+                            <h2>محصولات جدید</h2>
+                            <p>محصولات جدید را به سبد خرید اضافه کنید</p>
+                        </div>
+                        <!-- Section Title -->
+                    </div>
+                </div>
+                <!-- New Product Slider Start -->
+                <div class="new-product-slider owl-carousel owl-nav-style">
+                    @for (int i = 0; i < Model.Count; i += 2)
+                    {
+                    <div class="product-inner-item">
+                        @if (Model.ElementAtOrDefault(i) != null)
+                        {
+                        <article class="list-product mb-30px">
+                            <div class="img-block">
+                                <a href="/Shop/Product/@Model[i].Id" class="thumbnail">
+                                    <img class="first-img" src="/Files/ProductImages/Image/@Model[i].Image"
+                                         alt="@Model[i].ShortTitle">
+                                    <img class="second-img" src="/Files/ProductImages/Image/@Model[i].Image"
+                                         alt="@Model[i].ShortTitle">
+                                </a>
+                            </div>
+                            <ul class="product-flag">
+                                <li class="new">جدید</li>
+                            </ul>
+                            <div class="product-decs">
+                                <a class="inner-link" href="/Shop/ProductList/@Model[i].ProductGroupId"><span>@Model[i].ProductGroupName</span></a>
+                                <h2><a href="/Shop/Product/@Model[i].Id" class="product-link">@Model[i].ShortTitle</a></h2>
+                                <div class="rating-product">
+                                    @for (int j = 1; j < Model[i].Rate; j++)
+                                    {
+                                        if (j <= 5)
+                                        {
+                                            <i class="ion-android-star"></i>
+                                        }
+                                    }
+                                </div>
+                                <div class="pricing-meta">
+                                    <ul>
+                                        @if (Model[i].PriceAfterDiscount < Model[i].Price)
+                                        {
+                                            <li class="old-price">@Model[i].Price.ToString("##,###") تومان</li>
+                                            <li class="current-price prc">@Model[i].PriceAfterDiscount.ToString("##,###") تومان</li>
+                                            <li class="discount-price">@Model[i].DiscountPercentage٪</li>
+
+                                        }
+                                        else
+                                        {
+                                            if (Model[i].Price > 0)
+                                            {
+                                                <li class="current-price prc">@Model[i].Price.ToString("##,###") تومان</li>
+                                            }
+                                            else
+                                            {
+                                                <li class="current-price prc">عدم موجودی</li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            @*<div class="add-to-link">
+                            <ul>
+                                @if (Model[i].Price > 0)
+                                {
+                                    <li class="cart"><a class="cart-btn" href="javascript:void(0)" onclick="AddToCart(@Model[i].Id)">افزودن به سبد خرید </a></li>
+                                }
+                                else
+                                {
+                                    <li class="cart"><a class="cart-btn">عدم موجودی</a></li>
+                                }
+                                <li>
+                                    <a href="javascript:void(0)" onclick="AddToWishList(@Model[i].Id)"><i class="ion-android-favorite-outline"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-ios-shuffle-strong"></i></a>
+                                </li>
+                            </ul>
+                        </div>*@
+                        </article>
+                        }
+                        @if (Model.ElementAtOrDefault(i + 1) != null)
+                        {
+                            <article class="list-product">
+                                <div class="img-block">
+                                    <a href="/Shop/Product/@Model[i+1].Id" class="thumbnail">
+                                        <img class="first-img" src="/Files/ProductImages/Image/@Model[i+1].Image"
+                                             alt="@Model[i+1].ShortTitle">
+                                        <img class="second-img" src="/Files/ProductImages/Image/@Model[i+1].Image"
+                                             alt="@Model[i+1].ShortTitle">
+                                    </a>
+                                </div>
+                                <ul class="product-flag">
+                                    <li class="new">جدید</li>
+                                </ul>
+                                <div class="product-decs">
+                                    <a class="inner-link" href="/Shop/ProductList/@Model[i+1].ProductGroupId"><span>@Model[i+1].ProductGroupName</span></a>
+                                    <h2><a href="/Shop/Product/@Model[i+1].Id" class="product-link">@Model[i+1].ShortTitle</a></h2>
+                                    <div class="rating-product">
+                                        @for (int j = 1; j < Model[i+1].Rate; j++)
+                                        {
+                                            if (j <= 5)
+                                            {
+                                                <i class="ion-android-star"></i>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="pricing-meta">
+                                        <ul>
+                                            @if (Model[i+1].PriceAfterDiscount < Model[i+1].Price)
+                                            {
+                                                <li class="old-price">@Model[i+1].Price.ToString("##,###") تومان</li>
+                                                <li class="current-price prc">@Model[i+1].PriceAfterDiscount.ToString("##,###") تومان</li>
+                                                <li class="discount-price">@Model[i+1].DiscountPercentage٪</li>
+
+                                            }
+                                            else
+                                            {
+                                                if (Model[i+1].Price > 0)
+                                                {
+                                                    <li class="current-price prc">@Model[i+1].Price.ToString("##,###") تومان</li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="current-price prc">عدم موجودی</li>
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                @*<div class="add-to-link">
+                                    <ul>
+                                        @if (Model[i+1].Price > 0)
+                                        {
+                                            <li class="cart"><a class="cart-btn" href="javascript:void(0)" onclick="AddToCart(@Model[i+1].Id)">افزودن به سبد خرید </a></li>
+                                        }
+                                        else
+                                        {
+                                            <li class="cart"><a class="cart-btn">عدم موجودی</a></li>
+                                        }
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="AddToWishList(@Model[i+1].Id)"><i class="ion-android-favorite-outline"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="ion-ios-shuffle-strong"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>*@
+                            </article>
+                        }
+                    </div>
+                    }
+                </div>
+                <!-- Product Slider End -->
+            </div>
+        </div>
+    </div>
+</section>

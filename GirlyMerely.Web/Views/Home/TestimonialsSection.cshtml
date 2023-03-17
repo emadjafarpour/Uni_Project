@@ -1,0 +1,68 @@
+﻿@model List<GirlyMerely.Web.ViewModels.TestimonialViewModel>
+<section class="testimonial-section position-r ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="heading-part text-center mb-30 mb-sm-20">
+                    <h2 class="main_title">نظرات مشتریان</h2>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-slider owl-carousel position-initial">
+            @foreach (var item in Model)
+            {
+                <div class="item testimonial-main">
+                    <div class="client-img-main">
+                        <div class="client-img">
+                            <img alt="@item.Name" src="/Files/TestimonialImages/@item.Image">
+                        </div>
+                        <div class="quote-img">
+                            <img src="/Content/client/images/quote-img.png" alt="quote">
+                        </div>
+                    </div>
+                    <div class="clear-fix"></div>
+                    <div class="client-detail">
+                        <p>
+                            @item.Description
+                        </p>
+                        <h4 class="sub-title client-title">- @item.Name - </h4>
+                        <div class="designation"> @item.PersianDate</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="testimonial-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>نظرات مشتری</h2>
+                    <p>آنچه مشتریان خوشحال ما می گویند!</p>
+                </div>
+            </div>
+        </div>
+        <div class="testi-slider owl-carousel owl-dot-style">
+            @foreach (var item in Model)
+            {
+                <div class="testi-slider-wrapper wow bounceIn">
+                    <div class="testi-slider-inner">
+                        <div class="testi-img">
+                            <img alt="@item.Name" src="/Files/TestimonialImages/@item.Image">
+                        </div>
+                        <div class="testi-content">
+                            <div class="testi-content-text">
+                                @item.Description
+                            </div>
+                            <div class="author-text">
+                                <h4>نام<span>@item.Name</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

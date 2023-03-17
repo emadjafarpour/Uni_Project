@@ -1,0 +1,22 @@
+﻿@model List<GirlyMerely.Core.Models.StaticContentDetail>
+<div class="slider-area home-2 home-4">
+    <div class="slider-active-3 owl-carousel slider-7 owl-dot-style">
+        @foreach (var item in Model.Where(m => m.Image != null))
+        {
+            <div class="slider-height-7 d-flex align-items-start justify-content-start bg-img" style="background-image: url(/Files/StaticContentImages/Image/@item.Image);">
+                <div class="container">
+                    <div class="slider-content-7 slider-animated-1 text-center float-left">
+                        <span class="animated">@item.Title</span>
+                        <h1 class="animated">
+                            @item.ShortDescription
+                        </h1>
+                        @if (string.IsNullOrEmpty(item.Link) == false)
+                        {
+                            <a href="@item.Link" class="shop-btn animated">خرید کن</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

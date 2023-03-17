@@ -1,0 +1,44 @@
+﻿@model GirlyMerely.Core.Models.ContactForm
+<div class="col-lg-8 col-md-7">
+    <div class="contact-form">
+        <div class="contact-title mb-30">
+            <h2>تماس با ما</h2>
+        </div>
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "form", @class = "contact-form-style" }))
+        {
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { placeholder = "نام و نام خانوادگی" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { placeholder = "شماره موبایل" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "ایمیل" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        @Html.TextAreaFor(model => model.Message, 4, 4, new { htmlAttributes = new { placeholder = "پیام" } })
+                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="submit" type="submit">ارسال</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    $.validator.unobtrusive.parse("#form");
+</script>

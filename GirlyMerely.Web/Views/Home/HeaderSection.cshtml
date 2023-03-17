@@ -1,0 +1,151 @@
+﻿@using GirlyMerely.Core.Models
+@{
+    var mainProductGroups = ViewBag.MainProductGroups as List<ProductGroup>;
+}
+<header class="main-header home-2">
+    <!-- Header Buttom Start -->
+    <div class="header-navigation sticky-nav">
+        <div class="container">
+            <div class="container-inner myheader">
+                <div class="row">
+                    <!-- Logo Start -->
+                    <div class="col-md-2 col-sm-2">
+                        <div class="logo">
+                            <a href="/">
+                                <!--
+                                <img src="/Content/logo.png" class="mylogopic">
+                                <h1 class="mylogo" style=" font-size: 22px; text-align: center; color: black;"> <b style="font-size: 30px;">G</b>irlymerely</h1>
+                                -->  
+                                <img src="~/Content/client/images/logo/main-log.png" class="mylogopic" />
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Logo End -->
+                    <!-- Navigation Start -->
+                    <div class="col-md-10 col-sm-10">
+                        <div class="main-navigation d-none d-md-block">
+                            <ul>
+                                <li><a href="/">صفحه اصلی</a></li>
+                                <li class="menu-dropdown">
+                                    <a href="/Shop/ProductList">فروشگاه <i class="ion-ios-arrow-down"></i></a>
+                                    <ul class="mega-menu-wrap">
+                                        @foreach (var mainGroup in mainProductGroups)
+                                        {
+                                            <li>
+                                                <ul>
+                                                    <li class="mega-menu-title"><a href="/Shop/ProductList/@mainGroup.Id">@mainGroup.Title</a></li>
+                                                    @foreach (var child in mainGroup.Children)
+                                                    {
+                                                        <li><a href="/Shop/ProductList/@child.Id">@child.Title</a></li>
+                                                    }
+                                                </ul>
+                                            </li>
+                                        }
+                                        <li class="banner-wrapper">
+                                            <a href="#"><img src="/Content/client/images/banner-image/banner-menu-2.jpg" alt=""></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">وبلاگ</a></li>
+                                <li><a href="/ContactUs">ارتباط با ما</a></li>
+                                <li><a href="/AboutUs">درباره ما</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="menu-dropdown">
+                                        <a href="/Customer/Dashboard/Index">حساب کاربری <i class="ion-ios-arrow-down"></i></a>
+                                        <ul class="sub-menu">
+                                            <li class="mega-menu-title"><a href="/Shop/Wishlist">علاقه مندی ها</a></li>
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li><a href="/Customer/Auth/Login">ورود/ثبت نام</a></li>
+                                }
+                            </ul>
+                        </div>
+                        <!--Main Navigation End -->
+                        <!--Header Bottom Account Start -->
+                        <div class="header_account_area">
+                            <!--Seach Area Start -->
+                            <div class="header_account_list search_list">
+                                <a href="javascript:void(0)"><i class="ion-ios-search-strong"></i></a>
+                                <div class="dropdown_search">
+                                    <form method="get" id="search-form">
+                                        <input placeholder="کل فروشگاه را اینجا جستجو کنید ..." type="text" id="searchString" name="searchString" required="" oninvalid="this.setCustomValidity('لطفا عبارت مورد نظر را سرچ کنید')">
+                                        <div class="search-category">
+                                            <select class="bootstrap-select" name="searchCategory" id="searchCategory">
+                                                <option value="0">همه دسته بندی ها</option>
+                                                @foreach (var item in mainProductGroups)
+                                                {
+                                                    <option value="@item.Id">
+                                                        @item.Title
+                                                    </option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!--Cart info Start -->
+                            <div class="cart-info d-flex">
+                                <div class="mini-cart-warp" id="cartSection">
+                                    @Html.Action("CartSection", "Home")
+                                </div>
+                            </div>
+                            <!--Cart info End -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- mobile menu -->
+                <div class="mobile-menu-area">
+                    <div class="mobile-menu">
+                        <nav id="mobile-menu-active">
+                            <ul class="menu-overflow" style="top: -22px !important; left: 3px !important;">
+                                <li>
+                                    <a href="/">صفحه اصلی</a>
+                                </li>
+                                <li>
+                                    <a href="/Shop/ProductList">محصولات</a>
+                                    <ul>
+                                        @foreach (var item in mainProductGroups)
+                                        {
+                                            <li>
+                                                <a href="/Shop/ProductList/@item.Id">@item.Title</a>
+                                                <ul>
+                                                    @foreach (var child in item.Children)
+                                                    {
+                                                        <li><a href="/Shop/ProductList/@child.Id">@child.Title</a></li>
+                                                    }
+                                                </ul>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                                <li><a href="/ContactUs">ارتباط با ما</a></li>
+                                <li><a href="/AboutUs">درباره ما</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="menu-dropdown">
+                                        <a href="/Customer/Dashboard/Index">حساب کاربری <i class="ion-ios-arrow-down"></i></a>
+                                        <ul class="sub-menu">
+                                            <li class="mega-menu-title"><a href="/Shop/Wishlist">علاقه مندی ها</a></li>
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li><a href="/Customer/Auth/Login">ورود/ثبت نام</a></li>
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- mobile menu end-->
+            </div>
+        </div>
+    </div>
+    <!--Header Bottom Account End -->
+</header>

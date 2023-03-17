@@ -1,0 +1,638 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+
+
+<head>
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <title>سه شین</title>
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link type="image/x-icon" href="/Content/client/images/fav-icon.png" rel="icon">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/Content/client/css/xpoge.css">
+    <link rel="stylesheet" type="text/css" href="/Content/client/css/responsive.css">
+</head>
+<body class="text-right">
+    <!-- Start preloader -->
+    <div id="preloader"></div>
+    <!-- End preloader -->
+    <!-- Search Screen start -->
+    <div class="sidebar-search-wrap">
+        <div class="sidebar-table-container">
+            <div class="sidebar-align-container">
+                <div class="search-closer right-side"></div>
+                <div class="search-container">
+                    <form method="get" id="search-form">
+                        <input type="text" id="s" class="search-input" name="s" placeholder="جستجو کنید">
+                    </form>
+                    <span>محصول مورد نظر را جستجو کنید</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Screen end -->
+
+    <div class="main">
+        <!-- Header start -->
+        <header id="header">
+            <div class="container position-r">
+                <div class="row m-0">
+                    <div class="col-lg-3 col-md-4 col-4 p-0">
+                        <div class="navbar-header">
+                            <a class="navbar-brand page-scroll" href="/">
+                                <img alt="" src="/Content/client/images/logo.png">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-8 p-0 position-initial">
+                        <div class="left-side">
+                            <button data-target=".navbar-collapse" data-toggle="collapse"
+                                    class="navbar-toggle d-block d-lg-none d-xl-none" type="button">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <div class="overlay"></div>
+                            <div class="header-right-link">
+                                <ul>
+                                    <li class="search-box">
+                                        <a href="#"><span></span></a>
+                                    </li>
+                                    <li class="account-icon account">
+                                        <a href="#"><span></span></a>
+                                        <div class="header-link-dropdown account-link-dropdown">
+                                            <ul class="link-dropdown-list">
+                                                <li>
+                                                    <span class="dropdown-title">خوش آمدید</span>
+                                                    <ul>
+                                                        <li><a href="/Home/Login">ورود</a></li>
+                                                        <li><a href="/Home/Register">ثبت نام</a></li>
+                                                    </ul>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="cart-icon">
+                                        <a href="#" class="buy"> <span> <small class="cart-notification">0</small> </span> </a>
+                                        <div class="cart-dropdown header-link-dropdown">
+                                            <ul class="cart-list link-dropdown-list">
+                                            </ul>
+                                            <p class="cart-sub-totle">
+                                                <span class="pull-right">مبلغ کل</span>
+                                                <span class="pull-left">
+                                                    <strong class="price-box cart-total-price">0 تومان</strong>
+                                                </span>
+                                            </p>
+                                            <div class="clearfix"></div>
+                                            <div class="mt-20">
+                                                <a href="/Home/Wishlist" class="btn-color btn">سبدخرید</a>
+                                                <a href="/Home/Checkout" class="btn-color btn left-side">پرداخت </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="menu" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="level">
+                                        <a href="/" class="nav-link">صفحه اصلی</a>
+                                    </li>
+                                    <li class="level dropdown">
+                                        <span class="opener plus"></span>
+                                        <a href="/Home/Shop" class="nav-link">عطر زنانه</a>
+                                        <div class="megamenu mobile-sub-menu">
+                                            <div class="megamenu-inner-top">
+                                                <ul class="sub-menu-level1">
+                                                    <li class="level2 ">
+                                                        <a href="/Home/Shop"><span>برند های شناخته شده</span></a>
+                                                        <ul class="sub-menu-level2">
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>Gucci
+                                                                    EDP
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>لانکوم مدل
+                                                                    پوئم
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>تام
+                                                                    فورد
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>سان شاین
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop"><span>■</span>جورجیو</a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>coco
+                                                                    شنل
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+                                                    <li class="level2 d-none d-lg-block">
+                                                        <a href="#" class="m-0">
+                                                            <img src="/Content/client/images/drop_banner3.jpg" alt="">
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="level dropdown">
+                                        <span class="opener plus"></span>
+                                        <a href="/Home/Shop" class="nav-link">عطر مردانه</a>
+                                        <div class="megamenu mobile-sub-menu">
+                                            <div class="megamenu-inner-top">
+                                                <ul class="sub-menu-level1">
+                                                    <li class="level2 ">
+                                                        <a href="/Home/Shop"><span>برند های شناخته شده</span></a>
+                                                        <ul class="sub-menu-level2">
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop"><span>■</span>آکوا دی جیو</a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href=/Home/Shop">
+                                                                    <span>■</span>بلو د
+                                                                    شنل
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>پاکا
+                                                                    رابن
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>میشل
+                                                                    کورس
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop">
+                                                                    <span>■</span>جورجیو
+                                                                    آرمانی
+                                                                </a>
+                                                            </li>
+                                                            <li class="level3">
+                                                                <a href="/Home/Shop"><span>■</span>دیور</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+                                                    <li class="level2 d-none d-lg-block">
+                                                        <a href="#" class="m-0">
+                                                            <img src="/Content/client/images/drop_banner4.jpg" alt="">
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="level">
+                                        <a href="/Home/Blog" class="nav-link">بلاگ</a>
+                                    </li>
+                                    <li class="level">
+                                        <a href="/Home/Contact" class="nav-link">تماس با ما</a>
+                                    </li>
+                                    <li class="level">
+                                        <a href="/Home/Guide" class="nav-link">راهنمایی آنلاین</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header end -->
+        <!-- Checkout start -->
+        <div class="contant">
+            <div id="banner-part" class="banner inner-banner">
+                <div class="container">
+                    <div class="bread-crumb-main">
+                        <h1 class="banner-title">ثبت نهایی</h1>
+                        <div class="breadcrumb">
+                            <ul class="inline">
+                                <li><a href="/">خانه</a></li>
+                                <li><a href="/Home/Cart">سبد خرید</a></li>
+                                <li>ثبت نهایی</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-part ptb-100">
+                <div class="container">
+                    <form class="main-form">
+                        <div class="row">
+                            <div class="col-12 col-lg-8">
+                                <div class="mb-md-30">
+                                    <div class="mb-60">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="heading-part mb-30 mb-sm-20">
+                                                    <h3>مشخصات مشتری</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="full-name">نام و نام خانوادگی*</label>
+                                                    <input id="full-name" type="text" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="email">آدرس ایمیل (اختیاری)</label>
+                                                    <input id="email" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="phone-no">تلفن *</label>
+                                                    <input id="phone-no" type="text" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="address">آدرس*</label>
+                                                    <input id="address" type="text" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    @*<label for="zip">()کد پستی*</label>*@
+                                                    <label for="PostalCode">کد پستی (اختیاری)</label>
+                                                    <input id="zip" type="text" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="city">شهر و استان*</label>
+                                                    <input id="city" type="text" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="check-box mt-n2">
+                                                    <span>
+                                                        <input type="checkbox" class="checkbox" id="create-account" name="Create an Account?">
+                                                        <label for="create-account" class="mb-0">حساب کاربری می سازید ؟</label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-4">
+                                                <div class="check-box mt-n2 gift-checkbox">
+                                                    <span>
+                                                        <input type="checkbox" class="checkbox" id="gift" name="gift">
+                                                        <label for="gift" class="mb-0">آیا سفارش را کادو میدهید ؟</label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mb-2 mt-4 pr-5 gift-option">
+                                                <div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-4 pb-2">
+                                                            <label class="radio-btn">
+                                                                کیسه مخصوص
+                                                                <input type="radio" checked="checked" name="radio">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-4 pb-2">
+
+                                                            <label class="radio-btn">
+                                                                در جعبه
+                                                                <input type="radio" checked="checked" name="radio">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-4 pb-2">
+
+                                                            <label class="radio-btn">
+                                                                بسته بندی
+                                                                <input type="radio" checked="checked" name="radio">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-12 mt-2 mb-2">
+                                                            <div class="check-box mt-n2">
+                                                                <span>
+                                                                    <input type="checkbox" class="checkbox postal-card"
+                                                                           id="postal-card" name="postal-card">
+                                                                    <label for="postal-card" class="mb-0">کارت پستال هم می خواهید ؟</label>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="postal mt-2">
+
+                                                    <div class="row">
+                                                        <div class="col-md-4 pb-2">
+                                                            <label class="radio-btn">
+                                                                کارت پستال تولد
+                                                                <input type="radio" checked="checked" name="radio">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-4 pb-2">
+
+                                                            <label class="radio-btn">
+                                                                کارت پستال عروسی
+                                                                <input type="radio" checked="checked" name="radio">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-4 pb-2">
+
+                                                            <label class="radio-btn">
+                                                                کارت پستال عاشقانه
+                                                                <input type="radio" checked="checked" name="radio">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="heading-part mb-30">
+                                                <h3>اطلاعات ارسال</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="mb-20 mt-n2">
+                                                <div class="check-box">
+                                                    <span>
+                                                        <input type="checkbox" class="checkbox" id="different-address"
+                                                               name="Ship to a different address?">
+                                                        <label for="different-address" class="mb-0">به آدرس دیگری ارسال میکنید ؟</label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <h4>توضیحات سفارش</h4>
+                                            <div class="notes p-4">
+                                                <p>
+                                                    عطر های زنانه بسیاری وجود دارد ولی چندی از عطر های زنانه در بین مصرف
+                                                    کنندگان بسیار محبوبیت دارند که با توجه به این محبوبیت قیمت بالاتری دارند
+
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div class="heading-part mb-30 mb-sm-20">
+                                    <h3>اقلام سفارش ما</h3>
+                                </div>
+                                <div class="checkout-products sidebar-product mb-60">
+                                    <ul>
+                                        <li>
+                                            <div class="pro-media">
+                                                <a href="/Home/Product">
+                                                    <img alt=""
+                                                         src="/Content/client/images/1.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="pro-detail-info">
+                                                <a href="/Home/Product" class="product-title">
+                                                    عطر زنانه
+                                                </a>
+                                                <div class="price-box">
+                                                    <span class="price">180,000 تومان</span>
+                                                </div>
+                                                <div class="checkout-qty">
+                                                    <div>
+                                                        <label>تعداد </label>
+                                                        <span class="info-deta">1</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="pro-media">
+                                                <a href="/Home/Product">
+                                                    <img alt="T-shirt"
+                                                         src="/Content/client/images/2.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="pro-detail-info">
+                                                <a href="/Home/Product" class="product-title">
+                                                    کت
+                                                    عطر مردانه
+                                                </a>
+                                                <div class="price-box"><span class="price">140،000 تومان</span></div>
+                                                <div class="checkout-qty">
+                                                    <div>
+                                                        <label>تعداد </label>
+                                                        <span class="info-deta">2</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="pro-media">
+                                                <a href="/Home/Product">
+                                                    <img alt=""
+                                                         src="/Content/client/images/1.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="pro-detail-info">
+                                                <a href="/Home/Product" class="product-title">
+                                                    عطر زنانه
+                                                </a>
+                                                <div class="price-box">
+                                                    <span class="price">180,000 تومان</span>
+                                                </div>
+                                                <div class="checkout-qty">
+                                                    <div>
+                                                        <label>تعداد </label>
+                                                        <span class="info-deta">1</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="complete-order-detail commun-table gray-bg mb-30">
+                                    <div class="table-responsive">
+                                        <table class="table m-0">
+                                            <tbody>
+                                                <tr>
+                                                    <td><b>تاریخ</b></td>
+                                                    <td>17 مهر ماه 1399</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>مبلغ کل</b></td>
+                                                    <td>
+                                                        <div class="price-box"><span class="price">160،000 تومان</span></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>روش پرداخت</b></td>
+                                                    <td>درب منزل</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>شماره سفارش</b></td>
+                                                    <td>#011052</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <button class="btn full btn-color">ثبت سفارش</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Checkout end -->
+        <!-- Footer section start -->
+        <footer class="footer-part footer-border">
+            <div class="container">
+                <div class="footer-top ptb-100">
+                    <div class="mb_-30">
+                        <div class="row">
+                            <div class="col-12 col-lg-3 col-md-6">
+                                <div class="footer-about mb-sm-30">
+                                    <div class="footer-logo">
+                                        <a href="#">
+                                            <img src="/Content/client/images/logo.png" alt="logo">
+                                        </a>
+                                    </div>
+                                    <p class="footer-p">
+                                        گالری سه شین با جمع آوری بهترین نوع عطر ها از بهترین برند ها با
+                                        بهترین قیمت سعی در به دست آوردن هر چه بیشتر رضایت مشتریان خود دارد
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-6">
+                                <div class="footer-static-block">
+                                    <span class="opener plus"></span>
+                                    <h3 class="head-three">اطلاعات</h3>
+                                    <ul class="footer-menu footer-block-contant">
+                                        <li><a href="#">تماس با ما</a></li>
+                                        <li><a href="javascript:void(0)">برند ها</a></li>
+                                        <li><a href="#">بلاگ</a></li>
+                                        <li><a href="javascript:void(0)">شرایط و قوانین</a></li>
+                                        <li><a href="javascript:void(0)">حریم خصوصی</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-6">
+                                <div class="footer-static-block">
+                                    <span class="opener plus"></span>
+                                    <h3 class="head-three">حساب کاربری</h3>
+                                    <ul class="footer-menu footer-block-contant">
+                                        <li><a href="javascript:void(0)">تاریخچه سفارش ها</a></li>
+                                        <li><a href="#">علاقه مندی ها</a></li>
+                                        <li><a href="javascript:void(0)">تخفیف ها</a></li>
+                                        <li><a href="javascript:void(0)">هدایای ویژه</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-6">
+                                <div class="footer-static-block">
+                                    <span class="opener plus"></span>
+                                    <h3 class="head-three">تماس با ما</h3>
+                                    <div class="contact-box footer-block-contant">
+                                        <ul>
+                                            <li>
+                                                <div class="contact-thumb">
+                                                    <img src="/Content/client/images/address-icon.svg" alt="">
+                                                </div>
+                                                <div class="contact-box-detail">
+                                                    <p>
+                                                        خیابان میرزای شیرازی جنوبی بین کوچه 20 و 22 پلاک 166 گالری سه شین
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="contact-thumb">
+                                                    <img src="/Content/client/images/phone-icon.svg" alt="">
+                                                </div>
+                                                <div class="contact-box-detail">
+                                                    <p>09381982109</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="contact-thumb">
+                                                    <img src="/Content/client/images/mail-icon.svg" alt="">
+                                                </div>
+                                                <div class="contact-box-detail">
+                                                    <p><a href="#">info@gmail.com</a></p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom align-center">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="w-100">
+                                <p class="mb-0">
+                                    طراحی شده توسط<a href="https://www.spad.co/"
+                                                     target="_blank" title="Spad"> اسپاد </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="social-media">
+                                <ul>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer section end -->
+    </div>
+
+    <script src="/Content/client/js/jquery-3.4.1.min.js"></script>
+    <script src="/Content/client/js/custom.js"></script>
+    <script src="/Content/client/js/store.js"></script>
+
+</body>
+
+
+</html>

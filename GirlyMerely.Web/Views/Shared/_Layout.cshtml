@@ -1,0 +1,733 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>گرلی مرلی | @ViewBag.Title</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/Content/Logo-white.png" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800&amp;display=swap" rel="stylesheet" />
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" />*@
+    <link rel="stylesheet" href="/Content/client/css/vendor/plugins.min.css">
+    <link rel="stylesheet" href="~/Content/client/css/style.css" />
+    <link rel="stylesheet" href="/Content/client/css/style.min.css">
+    <link rel="stylesheet" href="/Content/client/css/responsive.min.css">
+    <!-- DateTime Picker -->
+    <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
+
+
+    <link href="~/Content/client/dateTimePicker.css" />
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>*@
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link href="~/Content/client/css/toastr.min.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="home-4 home-7 home-cosmatics">
+    <!-- main layout start from here -->
+    <!--====== PRELOADER PART START ======-->
+    <div id="preloader">
+        <div class="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== PRELOADER PART ENDS ======-->
+    <div id="main">
+        @Html.Action("HeaderSection", "Home", new { area = "" })
+        @RenderBody()
+        @Html.Partial("_FooterPartial")
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="نزدیک"><span aria-hidden="true">بستن</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-12 col-xs-12">
+                            <div class="tab-content quickview-big-img">
+                                <div id="pro-1" class="tab-pane fade show active">
+                                    <img src="/Content/client/images/product-image/cosmatic/1.jpg" alt="">
+                                </div>
+                                <div id="pro-2" class="tab-pane fade">
+                                    <img src="/Content/client/images/product-image/cosmatic/2.jpg" alt="">
+                                </div>
+                                <div id="pro-3" class="tab-pane fade">
+                                    <img src="/Content/client/images/product-image/cosmatic/3.jpg" alt="">
+                                </div>
+                                <div id="pro-4" class="tab-pane fade">
+                                    <img src="/Content/client/images/product-image/cosmatic/4.jpg" alt="">
+                                </div>
+                            </div>
+                            <!-- Thumbnail Large Image End -->
+                            <!-- Thumbnail Image End -->
+                            <div class="quickview-wrap mt-15">
+                                <div class="quickview-slide-active owl-carousel nav owl-nav-style owl-nav-style-2" role="tablist">
+                                    <a class="active" data-toggle="tab" href="#pro-1"><img src="/Content/client/images/product-image/cosmatic/1.jpg" alt=""></a>
+                                    <a data-toggle="tab" href="#pro-2"><img src="/Content/client/images/product-image/cosmatic/2.jpg" alt=""></a>
+                                    <a data-toggle="tab" href="#pro-3"><img src="/Content/client/images/product-image/cosmatic/3.jpg" alt=""></a>
+                                    <a data-toggle="tab" href="#pro-4"><img src="/Content/client/images/product-image/cosmatic/4.jpg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-sm-12 col-xs-12">
+                            <div class="product-details-content quickview-content">
+                                <h2>نام محصول</h2>
+                                <p class="reference">مرجع: <span> بهداشتی</span></p>
+                                <div class="pro-details-rating-wrap">
+                                    <div class="rating-product">
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                    </div>
+                                    <span class="read-review"><a class="reviews" href="#">نظرات را بخوانید (1)</a></span>
+                                </div>
+                                <div class="pricing-meta">
+                                    <ul>
+                                        <li class="old-price not-cut">250000 تومان</li>
+                                    </ul>
+                                </div>
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                                <div class="pro-details-size-color">
+                                    <div class="pro-details-color-wrap">
+                                        <span>رنگ</span>
+                                        <div class="pro-details-color-content">
+                                            <ul>
+                                                <li class="blue"></li>
+                                                <li class="maroon active"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro-details-quality">
+                                    <div class="cart-plus-minus">
+                                        <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+                                    </div>
+                                    <div class="pro-details-cart btn-hover">
+                                        <a href="#"> + افزودن به سبد خرید</a>
+                                    </div>
+                                </div>
+                                <div class="pro-details-wish-com">
+                                    <div class="pro-details-wishlist">
+                                        <a href="#"><i class="ion-android-favorite-outline"></i>به لیست دلخواه اضافه کنید</a>
+                                    </div>
+                                    @*<div class="pro-details-compare">
+                                            <a href="#"><i class="ion-ios-shuffle-strong"></i>افزودن برای مقایسه</a>
+                                        </div>*@
+                                </div>
+                                <div class="pro-details-social-info">
+                                    <span>اشتراک گذاری</span>
+                                    <div class="social-info">
+                                        <ul>
+                                            <li>
+                                                <a href="#"><i class="ion-social-facebook"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="ion-social-twitter"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="ion-social-google"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="ion-social-instagram"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loading" id="loading" style="display: none"></div>
+    <style>
+        .loading {
+            position: fixed;
+            z-index: 999999999;
+            height: 2em;
+            width: 2em;
+            overflow: visible;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+            /* Transparent Overlay */
+            .loading:before {
+                content: '';
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.3);
+            }
+
+            /* :not(:required) hides these rules from IE9 and below */
+            .loading:not(:required) {
+                /* hide "loading..." text */
+                font: 0/0 a;
+                color: transparent;
+                text-shadow: none;
+                background-color: transparent;
+                border: 0;
+            }
+
+                .loading:not(:required):after {
+                    content: '';
+                    display: block;
+                    font-size: 10px;
+                    width: 1em;
+                    height: 1em;
+                    margin-top: -0.5em;
+                    -webkit-animation: spinner 1500ms infinite linear;
+                    -moz-animation: spinner 1500ms infinite linear;
+                    -ms-animation: spinner 1500ms infinite linear;
+                    -o-animation: spinner 1500ms infinite linear;
+                    animation: spinner 1500ms infinite linear;
+                    border-radius: 0.5em;
+                    -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+                    box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+                }
+
+        /* Animation */
+
+        @@-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @@-moz-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @@-o-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @@keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        .mini-cart-content.cart-visible {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+        }
+    </style>
+
+
+    <!-- Loading -->
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/Content/client/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="/Content/client/js/vendor/modernizr-3.7.1.min.js"></script>
+    <script src="/Content/client/js/plugins.min.js"></script>
+    <script src="/Content/client/js/wow.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-loading-overlay/2.1.7/loadingoverlay.min.js" integrity="sha512-hktawXAt9BdIaDoaO9DlLp6LYhbHMi5A36LcXQeHgVKUH6kJMOQsAtIw2kmQ9RERDpnSTlafajo6USh9JUXckw==" crossorigin="anonymous"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>*@
+    <script src="/Content/client/js/main.js"></script>
+    <script src="~/Content/client/js/toastr.min.js"></script>
+    <script>
+        //function toggleCart() {
+        //    if ($('#cartBody').css('display') === 'block' ) {
+        //        console.log('It equal block');
+        //        $('#cartBody').css('display', 'none');
+        //    } else {
+        //        console.log('It did not equal block');
+        //        $('#cartBody').css('display','block');
+        //    }
+        //}
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",//"toast-top-full-width",//
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "3000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        function RemoveWarningClass() {
+            $(".main-feature-plane").removeClass("fade-warning");
+        }
+
+        var addCount = 1;
+        function IncreaseProductCount() {
+            addCount += 1;
+            $("#txtProductCount").html(addCount);
+        }
+
+        function DecreaseProductCount() {
+            if (addCount > 1)
+                addCount -= 1;
+            $("#txtProductCount").html(addCount);
+        }
+
+        function isIOS() {
+
+            return [
+                'iPad Simulator',
+                'iPhone Simulator',
+                'iPod Simulator',
+                'iPad',
+                'iPhone',
+                'iPod'
+            ].includes(navigator.platform)
+                // iPad on iOS 13 detection
+                || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+        }
+
+        function getMobileOperatingSystem() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Windows Phone must come first because its UA also contains "Android"
+            if (/windows phone/i.test(userAgent)) {
+                return "Windows Phone";
+            }
+
+            if (/android/i.test(userAgent)) {
+                return "Android";
+            }
+
+            // iOS detection from: http://stackoverflow.com/a/9039885/177710
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return "iOS";
+            }
+
+            return "unknown";
+        }
+
+        function AddToCart(id, mainFeature) {
+            debugger;
+
+            if (mainFeature == null || mainFeature == undefined || mainFeature == "") {
+                // check if we are on product details page
+                //var txt = $("#mainFeatureId");
+                //if (txt.length > 0) {
+                //    toastr.info("لطفا نوع محصول خود را انتخاب کنید");
+                //    $(".main-feature-plane").addClass("fade-warning");
+                //    setTimeout(RemoveWarningClass, 3000);
+                //    return;
+                //}
+
+                toastr.info("لطفا نوع محصول خود را انتخاب کنید");
+                $(".main-feature-plane").addClass("fade-warning");
+                setTimeout(RemoveWarningClass, 3000);
+                return;
+            }
+
+            var url = "";
+            if (isIOS()) {
+                if (mainFeatureId === null)
+                    url = '/Shop/AddItemToCart?productId=' + id + '&count=' + addCount;
+                else {
+                    url = '/Shop/AddItemToCart?productId=' + id + '&mainFeatureId=' + mainFeature + '&count=' + addCount;
+                }
+            }
+            else {
+                if (mainFeatureId === null)
+
+                    url = '/Shop/AddToCart?productId=' + id + '&count=' + addCount;
+                else {
+
+                    url = '/Shop/AddToCart?productId=' + id + '&mainFeatureId=' + mainFeature + '&count=' + addCount;
+                }
+
+            }
+
+            console.log(url);
+
+            $("#loading").show();
+            var mainFeatureId = null;
+            if (mainFeature != null) {
+                mainFeatureId = mainFeature;
+            }
+
+            if (mainFeatureId === null) {
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    success: function (data) {
+                        data = JSON.parse(data);
+                        if (data == "added") {
+                            toastr.success("محصول به سبد اضافه گردید. ");
+                        }
+                        else if (data == "ran out")
+                        toastr.error("موجودی این محصول با این تعداد به پایان رسیده است");
+                        GetCart();
+                    },
+                    error: function (data) {
+                        console.log("error");
+                        console.log(data);
+                    },
+                    complete: function () {
+                        $("#loading").hide();
+                    }
+                });
+            } else {
+                debugger;
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    success: function (data) {
+                        debugger;
+                        data = JSON.parse(data);
+                        if (data == "added") {
+                            toastr.success("محصول به سبد اضافه گردید. ");
+                        }
+                        else if (data == "ran out")
+                        toastr.error("موجودی این محصول با این تعداد به پایان رسیده است");
+                        GetCart();
+                    },
+                    error: function (data) {
+                        console.log("error");
+                        console.log(data);
+                    },
+                    complete: function () {
+                        $("#loading").hide();
+                    }
+                });
+            }
+        }
+        function RemoveFromCart(id, mainFeatureId, complete) {
+
+            var url = "";
+            if (isIOS()) {
+                url = '/Shop/RemoveItemFromCart?productId=' + id + '&mainFeatureId=' + mainFeatureId + '&complete=' + complete;
+            }
+            else {
+                url = '/Shop/RemoveFromCart?productId=' + id + '&mainFeatureId=' + mainFeatureId + '&complete=' + complete;
+            }
+
+            $("#loading").show();
+            $.ajax({
+                type: 'POST',
+                url: url,
+                success: function (data) {
+                    GetCart();
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                complete: function () {
+                    $("#loading").hide();
+                }
+            });
+        }
+        function GetCart() {
+            $.ajax({
+                type: 'GET',
+                url: '/Home/CartSection',
+                success: function (data) {
+                    $("#cartSection").html(data);
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                complete: function () {
+                }
+            });
+            if ($("#CartTable") !== undefined) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Shop/CartTable',
+                    success: function (data) {
+                        $("#CartTable").html(data);
+                    },
+                    error: function (data) {
+                        console.log("error");
+                        console.log(data);
+                    },
+                    complete: function () {
+                    }
+                });
+            }
+        }
+    </script>
+    <script>
+        function AddToWishList(id) {
+            $("#loading").show();
+            var userIsLoggedIn = '@(User.Identity.IsAuthenticated)';
+            if (userIsLoggedIn === 'False') {
+                $("#loading").hide();
+                location.href = "/Customer/Auth/Login";
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Shop/AddToWishList?productId=' + id,
+                    success: function (data) {
+                        alert('محصول مورد نظر به لیست علاقه مندی های شما افزوده شد');
+                    },
+                    error: function (data) {
+                        console.log("error");
+                        console.log(data);
+                    },
+                    complete: function () {
+                        $("#loading").hide();
+                    }
+                });
+            }
+        }
+        function removeFromWishList(id) {
+            $("#loading").show();
+            $.ajax({
+                type: 'POST',
+                url: '/Shop/RemoveFromWishList?productId=' + id,
+                success: function (data) {
+                    GetWishList();
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                complete: function () {
+                    $("#loading").hide();
+                }
+            });
+        }
+        function GetWishList() {
+            $.ajax({
+                type: 'GET',
+                url: '/Shop/WishListTable',
+                success: function (data) {
+                    $("#WishListTable").html(data);
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                complete: function () {
+                }
+            });
+        }
+    </script>
+    <script>
+        $("#search-form").submit(function (e) {
+            e.preventDefault();
+            var searchString = $("#searchString").val();
+            var searchCategory = $("#searchCategory :selected").val();
+            if (searchCategory === 0) {
+                location.href = '/Shop/ProductList/Search/' + searchString;
+            } else {
+                location.href = '/Shop/ProductList/' + searchCategory + '/Search/' + searchString;
+            }
+        });
+    </script>
+    <script>
+        var doc = document;
+        function __(item) {
+            return doc.querySelector(item);
+        }
+
+        $("#chkHasDiscountCode").on("change", function () {
+            //reset
+            __(".discount-message").innerHTML = "";
+            __("#txtDiscountCode").value = "";
+
+            var section = $(".checkout-discount-section");
+
+            if ($("#chkHasDiscountCode").is(':checked')) {
+                section.css({ "display": "block" });
+            }
+            else {
+                section.css({ "display": "none" })
+            }
+        })
+
+        // discount code
+        //function ApplyDiscountCode(e, invoiceNumber) {
+        //    e.preventDefault();
+        //    e.stopPropagation();
+        //    debugger;
+
+        //    var discountCodeStr = __("#txtDiscountCode").value;
+
+
+        //    if (discountCodeStr === "") {
+
+        //        __("#txtDiscountCode").style.borderColor = "#ff0000";
+        //        return;
+
+        //    } else {
+        //        __("#txtDiscountCode").style.borderColor = "#e5e5e5";
+        //        //$(e.target).LoadingOverlay("show", {
+        //        //    image: "",
+        //        //    fontawesome: "fa fa-spinner fa-spin"
+        //        //});
+        //        debugger;
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/Shop/ApplyDiscountCode?discountCodeStr=' + discountCodeStr + "&invoiceNumber=" + invoiceNumber,
+        //            success: function (result) {
+        //                var res = JSON.parse(result);
+        //                if (res.Response == "invalid") {
+        //                    __(".discount-message").innerHTML = '<div class="alert alert-warning">کد تخفیف نامعتبر است</div>';
+        //                    $(e.target).LoadingOverlay("hide");
+        //                }
+        //                else if (res.Response == "login") {
+        //                    __(".discount-message").innerHTML = '<div class="alert alert-warning">برای استفاده از کد تخفیف باید ابتدا وارد حساب کاربری خود شوید.</div>';
+        //                    $(e.target).LoadingOverlay("hide");
+        //                }
+        //                else {
+        //                    debugger;
+        //                    __(".discount-message").innerHTML = '<div class="alert alert-success">کد تخفیف معتبر بوده و تخفیف اعمال گردید.</div>';
+        //                    __("#txtDiscountCode").disabled = true;
+        //                    __(".btn-discount").disabled = true;
+        //                    //__("#Form_DiscountCode").value = discountCodeStr;
+        //                    //$(e.target).LoadingOverlay("hide");
+        //                }
+        //                debugger;
+        //                __(".finalPrice").innerHTML = Number(res.FinalPrice.toFixed(0)).toLocaleString() + " تومان";
+        //                __("#tdDiscountAmount").innerHTML = Number(res.DiscountAmount.toFixed(0)).toLocaleString() + " تومان";
+        //                __("#tdShippingAmount").innerHTML = Number(res.ShippingAmount.toFixed(0)).toLocaleString() + " تومان";
+        //                $("#DiscountCode").val(discountCodeStr);
+        //            },
+        //            error: function (data) {
+        //                console.log("error");
+        //                console.log(data);
+        //                $(e.target).LoadingOverlay("hide");
+        //            },
+        //            complete: function () {
+        //            }
+        //        });
+        //    }
+
+
+
+        //}
+
+        function HeartBeat() {
+            $.ajax({
+                type: 'POST',
+                url: '/Shop/HeartBeat',
+                success: function (data) {
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                complete: function () {
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            setInterval(HeartBeat, 60000);
+        })
+    </script>
+
+    <!-- DateTime Picker -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://unpkg.com/persian-date@1.1.0/dist/persian-date.min.js"></script>
+    <script src="https://unpkg.com/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+    <script src="~/Content/client/datePicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/locale/nl.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+    <script src="~/Content/client/timePicker.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

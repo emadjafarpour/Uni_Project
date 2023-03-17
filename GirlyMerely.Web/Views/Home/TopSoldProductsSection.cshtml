@@ -1,0 +1,86 @@
+﻿@model List<GirlyMerely.Infratructure.Dtos.Product.ProductWithPriceDto>
+<section class="best-sells-area mb-30px">
+    <div class="container">
+        <!-- Section Title Start -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>محبوب ترین کالا ها</h2>
+                    <p>محصولات پرفروش را به سبد کالا خود اضافه کنید</p>
+                </div>
+            </div>
+        </div>
+        <!-- Section Title End -->
+        <!-- Best Sell Slider Carousel Start -->
+        <div class="best-sell-slider owl-carousel owl-nav-style">
+            @foreach (var item in Model)
+            {
+            <article class="list-product">
+                <div class="img-block">
+                    <a href="/Shop/Product/@item.Id" class="thumbnail">
+                        <img class="first-img s-img" src="~/Files/ProductImages/Image/@item.Image" alt="@item.ShortTitle">
+                        <img class="second-img" src="~/Files/ProductImages/Image/@item.Image" alt="@item.ShortTitle">
+                    </a>
+                </div>
+                <div class="product-decs">
+                    <a class="inner-link" href="/Shop/ProductList/@item.ProductGroupId"><span>@item.ProductGroupName</span></a>
+                    <h2><a href="/Shop/Product/@item.Id" class="product-link">@item.ShortTitle</a></h2>
+                    <div class="rating-product">
+                        @for (int i = 1; i < item.Rate; i++)
+                        {
+                            if (i <= 5)
+                            {
+                                <i class="ion-android-star"></i>
+                            }
+                        }
+                    </div>
+                    <div class="pricing-meta">
+                        <ul>
+                            @if (item.PriceAfterDiscount < item.Price)
+                            {
+                                <li class="old-price">@item.Price.ToString("##,###") تومان</li>
+                                <li class="current-price prc">@item.PriceAfterDiscount.ToString("##,###") تومان</li>
+                                <li class="discount-price">@item.DiscountPercentage٪</li>
+
+                            }
+                            else
+                            {
+                                if (item.Price > 0)
+                                {
+                                    <li class="current-price prc">@item.Price.ToString("##,###") تومان</li>
+                                }
+                                else
+                                {
+                                    <li class="current-price prc">عدم موجودی</li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                @*
+                    <div class="add-to-link">
+                        <ul>
+                            @if (Model[i+1].Price > 0)
+                            {
+                                <li class="cart"><a class="cart-btn" href="javascript:void(0)" onclick="AddToCart(@Model[i+1].Id)">افزودن به سبد خرید </a></li>
+                            }
+                            else
+                            {
+                                <li class="cart"><a class="cart-btn">عدم موجودی</a></li>
+                            }
+                            <li>
+                                <a href="javascript:void(0)" onclick="AddToWishList(@Model[i+1].Id)"><i class="ion-android-favorite-outline"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="ion-ios-shuffle-strong"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                *@
+            </article>
+
+            }
+        </div>
+        <!-- Best Sells Carousel End -->
+    </div>
+</section>

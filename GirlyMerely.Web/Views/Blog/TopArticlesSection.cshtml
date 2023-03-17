@@ -1,0 +1,20 @@
+﻿@model List<GirlyMerely.Web.ViewModels.LatestArticlesViewModel>
+
+<div class="sidebar-default">
+    <div class="category-content">
+        <h2 class="cat-title">مقاله های محبوب</h2>
+        <div class="recent-post">
+            @foreach (var item in Model)
+            {
+                <div class="recent inline">
+                    <a href="/Blog/Article/@item.Id/@item.Title"><img src="~/Files/ArticleImages/Thumb/@item.Image" alt="@item.Title"></a>
+                    <div class="recent-detail">
+                        <span class="bloger-date">@item.PersianDate</span>
+                        <a href="/Blog/Article/@item.Id/@item.Title" class="post-title">@item.Title</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

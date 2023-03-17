@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "خانه";
+}
+
+ @Html.Action("SliderSection", "Home")
+@Html.Action("TopSoldProductsSection", "Home", new { take = 8 })
+@Html.Action("OffersSection", "Home") 
+@*@Html.Action("PopularProductGroupsSection", "Home", new { take = 16 })*@
+@Html.Action("LatestProductsSection", "Home", new { take = 8 })
+@Html.Action("OffersSection2", "Home")
+@Html.Action("LatestProductsSection2", "Home", new { take = 8, skip = 16 })
+@Html.Action("TestimonialsSection", "Home")
+@Html.Action("PartnersSection", "Home")

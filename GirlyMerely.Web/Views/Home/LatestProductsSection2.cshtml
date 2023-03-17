@@ -1,0 +1,115 @@
+﻿@model List<GirlyMerely.Infratructure.Dtos.Product.ProductWithPriceDto>
+<section class="feature-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>به تازگی اضافه شده</h2>
+                    <p>محصولات جدید را به سبد خرید اضافه کنید</p>
+                </div>
+            </div>
+        </div>
+        <div class="feature-slider owl-carousel owl-nav-style">
+            @for (int i = 0; i < Model.Count; i += 2)
+            {
+                <div class="feature-slider-item">
+                    @if (Model.ElementAtOrDefault(i) != null)
+                    {<article class="list-product wow slideInRight">
+                            <div class="img-block">
+                                <a href="/Shop/Product/@Model[i].Id" class="thumbnail">
+                                    <img class="first-img" src="/Files/ProductImages/Image/@Model[i].Image"
+                                         alt="@Model[i].ShortTitle">
+                                    <img class="second-img" src="/Files/ProductImages/Image/@Model[i].Image"
+                                         alt="@Model[i].ShortTitle">
+                                </a>
+                            </div>
+                            <div class="product-decs">
+                                <a class="inner-link" href="/Shop/ProductList/@Model[i].ProductGroupId"><span>@Model[i].ProductGroupName</span></a>
+                                <h2><a href="/Shop/Product/@Model[i].Id" class="product-link">@Model[i].ShortTitle</a></h2>
+                                <div class="rating-product">
+                                    @for (int j = 1; j < Model[i].Rate; j++)
+                                    {
+                                        if (j <= 5)
+                                        {
+                                            <i class="ion-android-star"></i>
+                                        }
+                                    }
+                                </div>
+                                <div class="pricing-meta">
+                                    <ul>
+                                        @if (Model[i].PriceAfterDiscount < Model[i].Price)
+                                        {
+                                            <li class="old-price">@Model[i].Price.ToString("##,###") تومان</li>
+                                            <li class="current-price prc">@Model[i].PriceAfterDiscount.ToString("##,###") تومان</li>
+                                            <li class="discount-price">@Model[i].DiscountPercentage٪</li>
+
+                                        }
+                                        else
+                                        {
+                                            if (Model[i].Price > 0)
+                                            {
+                                                <li class="current-price prc">@Model[i].Price.ToString("##,###") تومان</li>
+                                            }
+                                            else
+                                            {
+                                                <li class="current-price prc">عدم موجودی</li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                    }
+                    @if (Model.ElementAtOrDefault(i + 1) != null)
+                    {
+                        <article class="list-product wow slideInUp">
+                            <div class="img-block">
+                                <a href="/Shop/Product/@Model[i+1].Id" class="thumbnail">
+                                    <img class="first-img" src="/Files/ProductImages/Image/@Model[i+1].Image"
+                                         alt="@Model[i+1].ShortTitle">
+                                    <img class="second-img" src="/Files/ProductImages/Image/@Model[i+1].Image"
+                                         alt="@Model[i+1].ShortTitle">
+                                </a>
+                            </div>
+                            <div class="product-decs">
+                                <a class="inner-link" href="/Shop/ProductList/@Model[i+1].ProductGroupId"><span>@Model[i + 1].ProductGroupName</span></a>
+                                <h2><a href="/Shop/Product/@Model[i+1].Id" class="product-link">@Model[i + 1].ShortTitle</a></h2>
+                                <div class="rating-product">
+                                    @for (int j = 1; j < Model[i + 1].Rate; j++)
+                                    {
+                                        if (j <= 5)
+                                        {
+                                            <i class="ion-android-star"></i>
+                                        }
+                                    }
+                                </div>
+                                <div class="pricing-meta">
+                                    <ul>
+                                        @if (Model[i].PriceAfterDiscount < Model[i + 1].Price)
+                                        {
+                                            <li class="old-price">@Model[i + 1].Price.ToString("##,###") تومان</li>
+                                            <li class="current-price prc">@Model[i + 1].PriceAfterDiscount.ToString("##,###") تومان</li>
+                                            <li class="discount-price">@Model[i + 1].DiscountPercentage٪</li>
+
+                                        }
+                                        else
+                                        {
+                                            if (Model[i + 1].Price > 0)
+                                            {
+                                                <li class="current-price prc">@Model[i + 1].Price.ToString("##,###") تومان</li>
+                                            }
+                                            else
+                                            {
+                                                <li class="current-price prc">عدم موجودی</li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</section>

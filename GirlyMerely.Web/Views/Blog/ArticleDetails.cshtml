@@ -1,0 +1,253 @@
+﻿@model GirlyMerely.Web.ViewModels.ArticleDetailsViewModel
+@{
+    ViewBag.Title = $"مقاله {Model.Title}";
+}
+<div class="contant">
+<div id="banner-part" class="banner inner-banner">
+    <div class="container">
+        <div class="bread-crumb-main">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="banner-title">مقاله @Model.Title</h1>
+                </div>
+                <div class="col-md-6">
+                    <div class="breadcrumb">
+                        <ul class="inline">
+                            <li><a href="/">خانه</a></li>
+                            <li><a href="/Blog">بلاگ</a></li>
+                            <li><a href="#">@Model.Title</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="blog-detail-part pb-md-60">
+                    <img src="~/Files/ArticleImages/Image/@Model.Image" alt="@Model.Title" class="blog-img">
+                    <div class="blog-detail">
+                        <div class="blog-detail-inner">
+                            <span>@Model.Author @Model.PersianDate</span>
+                            <h2>@Model.Title</h2>
+                            <p>
+                                @Model.ShortDescription
+                            </p>
+                            @Html.Raw(Model.Description)
+                            @foreach (var item in Model.HeadLines)
+                            {
+                                <blockquote>
+                                    <h3>@item.Title</h3>
+                                    <p>@Html.Raw(item.Description)</p>
+                                </blockquote>
+                            }
+
+                            <div class="tag-social">
+                                @*<div class="social-icon float-right">
+                                        <ul>
+                                            <li>اشتراک گذاری :</li>
+                                            <li>
+                                                <a href="#"><i class="fa fa-facebook" title="facebook"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fa fa-twitter" title="twitter"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fa fa-instagram" title="instagram"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fa fa-youtube" title="youtube"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="detail-tags float-left mt-1">
+                                        <div class="small-title mb-0">عطر مردانه</div>
+                                        <span><a href="#">عطر و ادکلن</a></span>
+                                        <span><a href="#">ادکلن</a></span>
+                                    </div>*@
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="line"></div>
+                            <div class="comments-part">
+                                <h3 class="mb-30">درباره نویسنده</h3>
+                                <div class="comment mb-0 position-r">
+                                    <div class="comment-user" style="max-width: 70px">
+                                        <img src="/Files/UserAvatars/@Model.AuthorImage" alt="@Model.Author">
+                                    </div>
+                                    <div class="comment-detail">
+                                        <div class="mb-2">
+                                            <h4 class="head-four">@Model.Author</h4>
+                                        </div>
+                                        <p class="comment-msg">
+                                            @Model.AuthorInfo
+                                        </p>
+                                        @*<div class="social-icon ml-auto">
+                                                <a href="#" title="Follow on Facebook">
+                                                    <i class="fa active fa-facebook"></i>
+                                                </a>
+                                                <a href="#" title="Follow on twitter"><i class="fa fa-twitter"></i></a>
+                                                <a href="#" title="Follow on linkedin">
+                                                    <i class="fa  fa-linkedin"></i>
+                                                </a>
+                                            </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="comment-part">
+                            <h3 class="mb-30">@Model.ArticleComments.Count دیدگاه</h3>
+                            <ul class="comment-list mt-30">
+                                @foreach (var comment in Model.ArticleComments.Where(c => c.ParentId == null))
+                                {
+                                    <li>
+                                        <div class="comment-user" style="max-width: 70px">
+                                            <img src="/Files/UserAvatars/user-avatar.png" alt="@comment.Name">
+                                        </div>
+                                        <div class="comment-detail">
+                                            <span class="bloger-date">@comment.Name @comment.AddedDate</span>
+                                            <p>
+                                                @comment.Message
+                                            </p>
+                                            <a onclick="AnswerComment('@comment.Id','@comment.Name')" class="reply-btn btn btn-color small">پاسخ</a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                    foreach (var childComment in Model.ArticleComments.Where(c => c.ParentId == comment.Id))
+                                    {
+                                        <li>
+                                            <ul class="comment-list child-comment">
+                                                <li>
+                                                    <div class="comment-user" style="max-width: 70px">
+                                                        <img src="/Files/UserAvatars/user-avatar.png" alt="@childComment.Name">
+                                                    </div>
+                                                    <div class="comment-detail">
+                                                        <span class="bloger-date">@childComment.Name @childComment.AddedDate</span>
+                                                        <p>
+                                                            @childComment.Message
+                                                        </p>
+                                                        @*<a href="#" class="reply-btn btn btn-color small">پاسخ</a>*@
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="leave-comment-part main-form pt-100">
+                        <h4 id="answerPerson"></h4>
+                        <h3 class="mb-30">دیدگاه خود را بنویسید</h3>
+                        @using (Html.BeginForm("PostComment", "Blog", FormMethod.Post, new { id = "commentform" }))
+                        {
+                            <input type="hidden" id="ArticleId" name="ArticleId" value="@Model.Id">
+                            <input type="hidden" id="ParentId" name="ParentId" value="">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="Name" id="Name" placeholder="نام و نام خانوادگی" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="Email" id="Email" placeholder="ایمیل" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea placeholder="پیغام" name="Message" id="Message" rows="4" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-color">ارسال دیدگاه</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div id="sidebar-main" class="sidebar sidebar-default sidebar-separate sidebar-fixed">
+                    <div class="sidebar-content">
+                        <div class="sidebar-default">
+                            <form method="get" action="/Blog" id="form" class="category-content searching">
+                                <input type="text" name="searchString" title="searchString" value="@ViewBag.SearchString" placeholder="جستجو...">
+                                <a href="#" onclick="$('#form').submit()">
+                                    <i class="fa fa-search" title="جستجو"></i>
+                                </a>
+                            </form>
+                        </div>
+                        @Html.Action("ArticleCategoriesSection", "Blog")
+                        @if (Model.Tags.Any())
+                        {
+                            <div class="sidebar-default">
+                                <div class="category-content">
+                                    <h2 class="cat-title">برچسب ها</h2>
+                                    <div class="tags-grp row mlr_-5">
+                                        <ul>
+                                            @foreach (var tag in Model.Tags)
+                                            {
+                                                <li><a href="/Blog?searchString=@tag.Title">@tag.Title</a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @Html.Action("TopArticlesSection", "Blog", new { take = 3 })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<style>
+    .my-error-class {
+        color: darkred !important; /* red */
+    }
+</style>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $("#commentform").validate({
+            errorClass: "my-error-class",
+            rules: {
+                Name: "required",
+                Message: "required",
+                Email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                Name: "نام خود را وارد کنید",
+                Message: "پیام خود را وارد کنید",
+                Email: {
+                    required: "ایمیل خود را وارد کنید",
+                    email: "ایمیل وارد شده معتبر نیست"
+                },
+            }
+        });
+    </script>
+    <script>
+        function AnswerComment(parentId, parentName) {
+            $('#answerPerson').html("در حال پاسخ دادن به  " +
+                parentName +
+                "<a class='reply-btn btn btn-color small' style='margin-right:10px;cursor:pointer' onclick='removePerson()'>حذف</a>");
+            $('#ParentId').val(parentId);
+        }
+
+        function removePerson() {
+            $('#answerPerson').html("");
+            $('#ParentId').val("");
+        }
+    </script>
+}

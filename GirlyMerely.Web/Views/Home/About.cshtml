@@ -1,0 +1,70 @@
+﻿@using GirlyMerely.Core.Models
+@{
+    ViewBag.Title = "درباره ما";
+    var aboutUs = ViewBag.AboutUs as StaticContentDetail;
+}
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content">
+                    <h1 class="breadcrumb-hrading">درباره ما</h1>
+                    <ul class="breadcrumb-links">
+                        <li><a href="/">خانه</a></li>
+                        <li>درباره ما</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="about-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-res-sm-50px">
+                <div class="about-left-image">
+                    <img src="/Files/StaticContentImages/Image/@aboutUs.Image" alt="About us" class="img-responsive">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-content">
+                    <div class="about-title">
+                        <h2>@aboutUs.Title</h2>
+                    </div>
+                    <p class="mb-30px">
+                        @aboutUs.ShortDescription
+                    </p>
+                    <p>
+                        @Html.Raw(aboutUs.Description)
+                    </p>
+                </div>
+            </div>
+        </div>
+        @*<div class="row mt-60px">
+            <div class="col-md-4 mb-res-sm-30px">
+                <div class="single-about">
+                    <h4>تولیدات  ما</h4>
+                    <p>
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-res-sm-30px">
+                <div class="single-about">
+                    <h4>تیم ما</h4>
+                    <p>
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-about">
+                    <h4>درباره ما</h4>
+                    <p>
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                    </p>
+                </div>
+            </div>
+        </div>*@
+    </div>
+</section>

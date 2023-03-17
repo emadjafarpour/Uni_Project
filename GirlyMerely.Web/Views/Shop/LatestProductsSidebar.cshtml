@@ -1,0 +1,41 @@
+﻿@model  List<GirlyMerely.Web.ViewModels.ProductWithPriceViewModel>
+<div class="sidebar-default">
+    <div class="sidebar-product">
+        <h2 class="cat-title">آخرین محصولات</h2>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>
+                    <div class="pro-media">
+                        <a href="/Shop/Product/@item.Id/@item.ShortTitle">
+                            <img alt="@item.ShortTitle"
+                                 src="/Files/ProductImages/Thumb/@item.Image">
+                        </a>
+                    </div>
+                    <div class="pro-detail-info">
+                        <a href="product-page.html"
+                           class="product-title">
+                            @item.ShortTitle
+                        </a>
+                        <div class="price-box">
+                            @if (item.PriceAfterDiscount < item.Price)
+                            {
+                                <span class="price">@item.PriceAfterDiscount.ToString("##,###") تومان</span>
+                                <del class="price old-price">@item.Price.ToString("##,###") تومان</del>
+                            }
+                            else
+                            {
+                                <span class="price">@item.Price.ToString("##,###") تومان</span>
+                            }
+                        </div>
+                        <div class="cart-link">
+                            <form>
+                                <button title="افزودن به سبد خرید">افزودن به سبد خرید</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "بازگشت پرداخت";
+}
+<section class="breadcrumb-area" style="background: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content" style="padding-top: 50px">
+                    <h1 class="breadcrumb-hrading" style="color: gray">
+                        @if (ViewBag.Message != null)
+                        {
+                            @ViewBag.Message
+                        }
+                        else
+                        {
+                            <text>در حال انتقال به درگاه پرداخت</text>
+                            <button onclick="document.getElementById('PostForm').submit();">برو</button>
+                        }
+                    </h1>
+                    <h4><a href="/" style="font-size: 15px">بازگشت به خانه</a></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script>
+        $(document).ready(function() {
+            $("#PostForm").submit();
+        })
+    </script>
+}

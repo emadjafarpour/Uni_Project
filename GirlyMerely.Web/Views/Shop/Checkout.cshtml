@@ -1,0 +1,412 @@
+﻿@using GirlyMerely.Core.Models
+@model GirlyMerely.Web.ViewModels.CheckoutViewModel
+@{
+    ViewBag.Title = "ثبت نهایی";
+    var ListHoliday = ViewBag.ListHolidyDate as List<string>;
+}
+<!-- Breadcrumb Area start -->
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content">
+                    <h1 class="breadcrumb-hrading">ثبت نهایی</h1>
+                    <ul class="breadcrumb-links">
+                        <li><a href="/">خانه</a></li>
+                        <li>ثبت نهایی</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+<!-- checkout area start -->
+<div class="checkout-area mt-60px mb-40px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="billing-info-wrap">
+                    <h3>جزئیات صورتحساب</h3>
+                    @if (ViewBag.Errors != null)
+                    {
+                        foreach (var item in ViewBag.Errors)
+                        {
+                            <div><span class="text-danger">@item</span></div>
+                        }
+                    }
+                    @using (Html.BeginForm("Checkout", "Shop", FormMethod.Post, new { id = "form", @class = "row" }))
+                    {
+                        <input type="hidden" id="DiscountCode" @*value="@Model.Form.DiscountCode"*@ />
+                        @*@Html.HiddenFor(model => model.Form.InvoiceNumber)*@
+                        <input type="hidden" id="InvoiceNumber" value="@Model.Form.InvoiceNumber" />
+                        @*@Html.HiddenFor(model => model.Form.RegisterDate)*@
+                        <input type="hidden" id="RegisterDate" value="@Model.Form.RegisterDate" />
+                        <div class="col-12">
+                            <div class="billing-info mb-20px">
+                                @Html.LabelFor(model => model.Form.Name, new { })*
+                                @Html.EditorFor(model => model.Form.Name, new { htmlAttributes = new { @class = "form-control ", id = "Name", name = "Name", required = true } })
+                                @Html.ValidationMessageFor(model => model.Form.Name, "", new { @class = "form-text text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="billing-info mb-20px">
+                                <label for="Email">آدرس ایمیل (اختیاری)</label>
+                                @Html.EditorFor(model => model.Form.Email, new { htmlAttributes = new { @class = "form-control ", id = "Email", name = "Email" } })
+                                @Html.ValidationMessageFor(model => model.Form.Email, "", new { @class = "form-text text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="billing-info mb-20px">
+                                @Html.LabelFor(model => model.Form.Phone, new { })*
+                                @Html.EditorFor(model => model.Form.Phone, new { htmlAttributes = new { @class = "form-control ", id = "Phone", name = "Phone", required = true } })
+                                @Html.ValidationMessageFor(model => model.Form.Phone, "", new { @class = "form-text text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="billing-info mb-20px">
+                                @Html.LabelFor(model => model.Form.Address, new { })*
+                                @Html.EditorFor(model => model.Form.Address, new { htmlAttributes = new { @class = "form-control ", style = "height: 300px", id = "Address", name = "Address", required = true } })
+                                @Html.ValidationMessageFor(model => model.Form.Address, "", new { @class = "form-text text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="billing-info mb-20px">
+                                @Html.LabelFor(model => model.Form.PostalCode, new { })
+                                @Html.EditorFor(model => model.Form.PostalCode, new { htmlAttributes = new { @class = "form-control ", id = "PostalCode", name = "PostalCode" } })
+                                @Html.ValidationMessageFor(model => model.Form.PostalCode, "", new { @class = "form-text text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="">
+                                @Html.LabelFor(model => model.Form.GeoDivisionId, "استان", new { })
+                                @Html.DropDownList("GeoDivisionId", null, htmlAttributes: new { @class = "form-control", style = "max-height:200px", id = "Country", onchange = "FuncDate()" })
+                                @Html.ValidationMessageFor(model => model.Form.GeoDivisionId, "", new { @class = "form-text text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12" id="CitiezsS">
+                            <div class="">
+                                @Html.LabelFor(model => model.Form.GeoDivisionId, "شهر", new { })
+                                @Html.DropDownList("CitiezOfTehranId", null, htmlAttributes: new { @class = "form-control", style = "max-height:200px", id = "Citiezs", name = "Citiezs", onchange = "FuncCitiezDate()" })
+                                @Html.ValidationMessageFor(model => model.Form.GeoDivisionId, "", new { @class = "form-text text-danger" })
+                            </div>
+                        </div>
+                        @*<div class="col-md-6 col-12 mt-2 mb-3">
+                                <div id="username-container" class="slds-form-element slds-col">
+                                    @Html.LabelFor(model => model.Form.ShipingDate, htmlAttributes: new { @class = "slds-required" })
+                                    @Html.EditorFor(model => model.Form.ShipingDate, new { htmlAttributes = new { @class = "slds-form-element__control slds-input", type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.Form.ShipingDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+                        @*<div class="col-md-6 col-12 mt-2 mb-3">
+                                <div id="username-container" class="slds-form-element slds-col">
+                                    @Html.LabelFor(model => model.Form.ShipingDate, htmlAttributes: new { @class = "slds-required" })
+                                    <div id="ShipingDate" name="ShipingDate" class="hasDate"></div>
+                                </div>
+                            </div>*@
+                        <div id="kkk" class="col-md-6 col-12 mt-2 mb-3">
+                            @Html.LabelFor(model => model.Form.ShipingDate, htmlAttributes: new { @class = "slds-required" })
+                            <div class="col">
+                                <input id="datepicker" name="datepicker" class="inline-example form-control form-control-lg text-center" @*onchange="SelectDateForm.submit()"*@ />
+                            </div>
+                            <div class="col">
+                                <div class="alert alert-primary" id="hide" role="alert">
+                                </div>
+                            </div>
+                        </div>
+                        @*@Html.EditorFor(model => model.Form.DiscountCode, new { htmlAttributes = new { @type = "hidden", @readonly = "readonly" } })*@
+                        @*@Html.EditorFor(model => model.Form.InvoiceNumber, new { htmlAttributes = new { @type = "hidden", @readonly = "readonly" } })*@
+                        @*<input type="hidden" id="InvoiceNumber" value="@Model.Form.InvoiceNumber" />*@
+                        <div style="width: 100%" class="pro-details-quality mt-0px">
+                            <div style="width: 100%" class="pro-details-cart btn-hover">
+                                <button href="javascript:void(0)" type="button" id="SubCheckOut" name="SubCheckOut" class="btn btn-success" style="width: 60%; height:70px; margin-right:10rem; text-align: center">پرداخت</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="your-order-area">
+                    @if (ViewBag.DiscountCode.Equals(""))
+                    {
+                        <div class="checkout-discount-section-container mb-20">
+                            <div class="check-box-container">
+                                <div>
+                                    <label for="" class="control-label chkbox-label">کد تخفیف دارید؟</label>
+                                </div>
+                                <div>
+                                    <input id="chkHasDiscountCode" name="chkHasDiscountCode" type="checkbox" class="form-control fashioned-checkbox" />
+                                    <label id="lblHasDiscountCode" for="chkHasDiscountCode" class="chkbox">Toggle</label>
+                                </div>
+                            </div>
+                            <div class="checkout-discount-section">
+                                <span class="inputdesc"><i class="fa fa-info-circle"></i> شما تنها امکان اعمال یک کد تخفیف را دارید.</span>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <input type="text" id="txtDiscountCode" name="txtDiscountCode" placeholder="کد تخفیف" />
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-dark btn-discount" onclick="ApplyDiscountCode(event, @ViewBag.InvoiceNumber)">اعمال</button>
+                                    </div>
+                                </div>
+                                <div class="discount-message"></div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="checkout-discount-section-container mb-20">
+                            <div class="check-box-container">
+                                <div>
+                                    <label for="" class="control-label chkbox-label">کد تخفیف شما:</label>
+                                </div>
+                            </div>
+                            <div class="checkout-discount-section" style="display:block">
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <input type="text" id="txtDiscountCode" name="txtDiscountCode" placeholder="کد تخفیف" value="@ViewBag.DiscountCode" disabled="disabled" />
+                                    </div>
+                                </div>
+                                <span class="inputdesc"><i class="fa fa-info-circle"></i> شما تنها امکان اعمال یک کد تخفیف را دارید.</span>
+                            </div>
+                        </div>
+                    }
+                    <h3>سفارش شما</h3>
+                    <div class="your-order-wrap gray-bg-4">
+                        <div class="your-order-product-info">
+                            <div class="your-order-top">
+                                <ul>
+                                    <li>محصول</li>
+                                    <li>جمع</li>
+                                </ul>
+                            </div>
+                            <div class="your-order-middle">
+                                <ul>
+                                    @if (Model.Cart != null && Model.Cart.CartItems != null)
+                                    {
+                                        foreach (var item in Model.Cart.CartItems)
+                                        {
+                                            <li><span class="order-middle-left"> @item.ProductName (@item.Quantity) </span> <span class="order-price">@((item.Price * item.Quantity).ToString("##,###")) تومان</span></li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                            @*<div class="your-order-bottom">
+                                    <ul>
+                                        <li class="your-order-shipping">حمل نقل</li>
+                                        <li>ارسال رایگان</li>
+                                    </ul>
+                                </div>
+                                <hr />*@
+                            <div class="your-order-bottom">
+                                <ul>
+                                    <li class="your-order-shipping">تاریخ</li>
+                                    <li>@ViewBag.PersianRegisterDate</li>
+                                </ul>
+                            </div>
+                            <hr />
+                            <div class="your-order-bottom">
+                                <ul>
+                                    <li class="your-order-shipping">شماره سفارش</li>
+                                    <li>#@Model.Form.InvoiceNumber</li>
+                                </ul>
+                            </div>
+                            <hr />
+                            @{
+                                var shippingAmount = ViewBag.ShippingPrice != null ? ViewBag.ShippingPrice.ShippingPriceValue : 0;
+                                var discountAmount = ViewBag.DiscountAmount == null ? 0 : ViewBag.DiscountAmount;
+                                var overallPrice = discountAmount + Model.Cart.TotalPrice;
+                                var finalPrice = overallPrice - discountAmount + shippingAmount;
+
+                                var strDiscountAmount = string.IsNullOrEmpty(discountAmount.ToString("##,###")) ? "0" : discountAmount.ToString("##,###");
+                                var strShippingAmount = string.IsNullOrEmpty(shippingAmount.ToString("##,###")) ? "0" : shippingAmount.ToString("##,###");
+                            }
+                            <div class="your-order-bottom">
+                                <ul>
+                                    <li class="your-order-shipping">هزینه ارسال</li>
+                                    <li style="color: #212123" id="tdShippingAmount">@strShippingAmount تومان</li>
+                                </ul>
+                            </div>
+                            <hr />
+                            <div class="your-order-bottom">
+                                <ul>
+                                    <li class="your-order-shipping">مبلغ سفارش</li>
+                                    <li style="color: #212123">@overallPrice.ToString("##,###") تومان</li>
+                                </ul>
+                            </div>
+                            <hr />
+                            <div class="your-order-bottom">
+                                <ul>
+                                    <li class="your-order-shipping">تخفیف</li>
+                                    <li style="color: #212123" id="tdDiscountAmount">@strDiscountAmount تومان</li>
+                                </ul>
+                            </div>
+                            <div class="your-order-total">
+                                <ul>
+                                    <li class="order-total">مبلغ نهایی</li>
+                                    <li style="color: #E03A2C" class="finalPrice">@finalPrice.ToString("##,###") تومان</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .nice-select.open .list {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+</style>
+<!-- checkout area end -->
+@section scripts {
+    <script src="~/Content/client/js/jquery.ui.datepicker-cc.all.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var bb = $("#Country").val();
+            if (bb == 24) {
+                $("#CitiezsS").show();
+                var cc = $("#Citiezs").val();
+                if (cc == 33) {
+                    $("#kkk").show();
+                }
+                else {
+                    $("#datepicker").val("");
+                    $("#kkk").hide();
+                }
+
+            } else {
+                $("#datepicker").val("");
+                $("#kkk").hide();
+                $("#CitiezsS").hide();
+
+            }
+        });
+    </script>
+    <script>
+        function FuncDate() {
+            var bb = $("#Country").val();
+            if (bb == 24) {
+                $("#CitiezsS").show();
+                var cc = $("#Citiezs").val();
+                if (cc == 33) {
+                    $("#kkk").show();
+                }
+                else {
+                    $("#datepicker").val("");
+                    $("#kkk").hide();
+                }
+            } else {
+                $("#datepicker").val("");
+                $("#kkk").hide();
+                $("#CitiezsS").hide();
+            }
+        };
+    </script>
+    <script>
+        //function FuncCitiezDate() {
+        //    debugger;
+        //    var bb = $("#Citiezs").val();
+        //    if (bb == 33) {
+        //        $("#kkk").show();
+        //    } else {
+        //        $("#datepicker").val("");
+        //        $("#kkk").hide();
+        //    }
+        //};
+    </script>
+    <script>
+            $("#SubCheckOut").click(function (event) {
+                debugger;
+                if ($("#form").valid()) {
+                    debugger;
+              var array = @Html.Raw(Json.Encode(ListHoliday));
+                var Date = $("#datepicker").val();
+                var flag = false;
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i] === Date) {
+                        flag = true;
+                        $("#datepicker").val("");
+                        break;
+                    }
+                }
+                if (flag) {
+                    alert("تاریخ انتخابی شما با تاریخ ارسال مرسولات همخوانی ندارد لطفا تاریخ دیگری را انتخاب کنید");
+                } else {
+                    var DATAA = {
+                            InvoiceNumber: $("#InvoiceNumber").val(),
+                            RegisterDate: $("#RegisterDate").val(),
+                            DiscountCode: $("#DiscountCode").val(),
+                            Name: $("#Name").val(),
+                            Email: $("#Email").val(),
+                            Phone: $("#Phone").val(),
+                            Address: $("#Address").val(),
+                            PostalCode: $("#PostalCode").val()
+
+                    };
+                    var datepicker = $("#datepicker").val();
+                    var GeoDivisionId = $("#Country").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "/Shop/Checkout",
+                     /*   data: "datepicker=" + datepicker + "&GeoDivisionId=" + GeoDivisionId + "&form=" + DATAA,*/
+                        data: { form: DATAA, GeoDivisionId: GeoDivisionId, datepicker: datepicker },
+
+                        success: function (data) {
+                            if (data == 0) {
+                                window.location = "/Customer/Auth/Login";
+                            }
+                            else if (data == 1) {
+                                alert("سبد خرید معتبر نیست.");
+
+                            }
+                            else if (data == 2) {
+                                alert("مقادیر وارد شده صحیح نیست");
+
+                            }
+                            else {
+                                window.location = "/Shop/CheckoutSummary/" + data;
+
+                            }
+                            //alert("dsjfbjdshbfhjok");
+                        },
+                        error: function () {
+                            alert("An error has occured!!!");
+                        }
+                    });
+
+                }
+
+        }
+              /*  event.preventDefault();*/
+            });
+
+    </script>
+    @*<script>
+                $('.table-days td').on('click', () => {
+                    var array = @Html.Raw(Json.Encode(ListHoliday));
+                    var Date = $("#datepicker").val();
+                    debugger;
+                    if (Date === "") {
+                        alert("لطفا یکبار دیگر تاریخ را وارد کنید");
+                        $("#datepicker").val("");
+                    } else {
+                        for (var i = 0; i < array.length; i++) {
+                            if (array[i] === Date) {
+                                alert("تاریخ انتخابی شما با تاریخ ارسال مرسولات همخوانی ندارد لطفا تاریخ دیگری را انتخاب کنید");
+                                $("#datepicker").val("");
+                                break;
+                            }
+                        }
+                    }
+
+                });
+
+
+        </script>*@
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

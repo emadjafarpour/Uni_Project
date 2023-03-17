@@ -1,0 +1,75 @@
+﻿@model GirlyMerely.Web.ViewModels.ContactUsViewModel
+@{
+    ViewBag.Title = "ارتباط با ما";
+}
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content">
+                    <h1 class="breadcrumb-hrading">ارتباط با ما</h1>
+                    <ul class="breadcrumb-links">
+                        <li><a href="/">خانه</a></li>
+                        <li>ارتباط با ما</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="contact-area mtb-60px">
+    <div class="container">
+        <div class="contact-map mb-10">
+            <div id="map" style="position: relative; overflow: hidden;">
+                @Html.Raw(Model.Map)
+            </div>
+        </div>
+        <div class="custom-row-2">
+            <div class="col-lg-4 col-md-5">
+                <div class="contact-info-wrap">
+                    <div class="single-contact-info">
+                        <div class="contact-icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="contact-info-dec">
+                            <p>@Model.Phone</p>
+                        </div>
+                    </div>
+                    <div class="single-contact-info">
+                        <div class="contact-icon">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                        <div class="contact-info-dec">
+                            <p><a href="#">@Model.Email</a></p>
+                        </div>
+                    </div>
+                    <div class="single-contact-info">
+                        <div class="contact-icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="contact-info-dec">
+                            <p>آدرس:</p>
+                            <p style="line-height: 1.2">@Model.Address</p>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <h3>ما را دنبال کنید</h3>
+                        <div class="social-info">
+                            @Html.Action("Social", "Home")
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.Action("ContactUsForm", "Home")
+        </div>
+    </div>
+</div>
+<style>
+    .contact-info-wrap {
+        padding-bottom: 75px;
+    }
+</style>
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,7 @@
+﻿.Print {
+    SchedulerDetailsPrintStyle detailsStyle = new SchedulerDetailsPrintStyle();
+    detailsStyle .AppointmentDateWidth = 300;
+    detailsStyle .AppointmentTitleHeight = 50;
+    detailsStyle .DayHeaderHeight = 80;
+    detailsStyle .PageBreakMode = PageBreakMode.Day;
+}

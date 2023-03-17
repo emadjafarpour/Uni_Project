@@ -1,0 +1,68 @@
+﻿@model List<GirlyMerely.Infratructure.Dtos.Product.ProductGroupWithProductCountDto>
+<section class="feature-area-2">
+    <div class="container">
+        <div class="row">
+            <!-- left side -->
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="feature-left">
+                    <img src="/Content/client/images/feature-bg/2.png" alt="" class="img-responsive">
+                </div>
+            </div>
+            <!-- left side -->
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <!-- Section Title -->
+                <div class="section-title">
+                    <h2>دسته بندی های محبوب</h2>
+                    <p>اضافه کردن دسته بندی های محبوب به لیست خرید</p>
+                </div>
+                <!-- Section Title -->
+                <!-- Feature slide 2 start -->
+                <div class="feature-slider-2 owl-carousel owl-nav-style">
+                    <!-- slngle item -->
+                    @for (int i = 0; i < Model.Count; i += 2)
+                    {
+                    <div class="feature-slider-item wow bounceIn">
+                        @if (Model.ElementAtOrDefault(i) != null)
+                        {
+                            <article class="list-product">
+                                <div class="img-block">
+                                    <a href="/Shop/ProductList/@Model[i].ProductGroup.Id" class="thumbnail">
+                                        <img class="first-img" src="/Files/ProductGroupImages/Image/@Model[i].ProductGroup.Image" alt="@Model[i].ProductGroup.Title">
+                                        <img class="second-img" src="/Files/ProductGroupImages/Image/@Model[i].ProductGroup.Image" alt="@Model[i].ProductGroup.Title">
+                                    </a>
+                                </div>
+                                <div class="product-decs">
+                                    <a class="inner-link" href="/Shop/ProductList/@Model[i].ProductGroup.Id"><span>@Model[i].ProductCount محصول </span></a>
+                                    <h2><a href="/Shop/ProductList/@Model[i].ProductGroup.Id" class="product-link">@Model[i].ProductGroup.Title</a></h2>
+                                    <a href="/Shop/ProductList/@Model[i+1].ProductGroup.Id" style="text-decoration: inherit;color:purple">
+                                        اکنون خرید کنید<i class="ion-android-arrow-dropright-circle mr-2"></i>
+                                    </a>
+                                </div>
+                            </article>
+                        }
+                        @if (Model.ElementAtOrDefault(i + 1) != null)
+                        {
+                            <article class="list-product">
+                                <div class="img-block">
+                                    <a href="/Shop/ProductList/@Model[i+1].ProductGroup.Id" class="thumbnail">
+                                        <img class="first-img" src="/Files/ProductGroupImages/Image/@Model[i+1].ProductGroup.Image" alt="@Model[i+1].ProductGroup.Title">
+                                        <img class="second-img" src="/Files/ProductGroupImages/Image/@Model[i+1].ProductGroup.Image" alt="@Model[i+1].ProductGroup.Title">
+                                    </a>
+                                </div>
+                                <div class="product-decs">
+                                    <a class="inner-link" href="/Shop/ProductList/@Model[i+1].ProductGroup.Id"><span>@Model[i+1].ProductCount محصول </span></a>
+                                    <h2><a href="/Shop/ProductList/@Model[i].ProductGroup.Id" class="product-link">@Model[i+1].ProductGroup.Title</a></h2>
+                                    <a href="/Shop/ProductList/@Model[i+1].ProductGroup.Id" style="text-decoration: inherit;color:purple">
+                                        اکنون خرید کنید<i class="ion-android-arrow-dropright-circle mr-2"></i>
+                                    </a>
+                                </div>
+                            </article>
+                        }
+                    </div>
+                    }
+                </div>
+                <!-- Feature slide 2 End -->
+            </div>
+        </div>
+    </div>
+</section>
